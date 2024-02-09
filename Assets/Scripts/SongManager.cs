@@ -13,12 +13,17 @@ public class SongManager : Singleton<SongManager>
 
     public static float time;
     public static float deltaTime;
-    // hi
     public static event Action OnBeat;
-    public void Play(AudioClip audioClip)
+
+    public void ChangeSong(AudioClip song)
+    {
+        this.song = song;
+    }
+
+    public void Play()
     {
         audioSource.Stop();
-        audioSource.clip = audioClip;
+        audioSource.clip = song;
         audioSource.Play();
         StartCoroutine(CalculateDeltaTime());
         StartCoroutine(InvokeOnBeat(bpm));
