@@ -15,4 +15,8 @@ public class BeatListener : MonoBehaviour
     {
         
     }
+
+    public virtual void OnBeatHandler() {
+        return;
+    }
 }

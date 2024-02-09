@@ -13,7 +13,6 @@ public class SongManager : Singleton<SongManager>
 
     public static float time;
     public static float deltaTime;
-    // hi
     public static event Action OnBeat;
     public void Play(AudioClip audioClip)
     {
