@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class BeatListener : MonoBehaviour
@@ -18,4 +18,3 @@ public class BeatListener : MonoBehaviour
 
 	}
 }
-
