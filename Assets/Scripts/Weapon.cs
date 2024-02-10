@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
-    public float fireRate;
-    public float waitTime;
+    public int baseDamage;
+    public float baseFireRate;
+    public Projectile projectile;
 
-    public void Activate()
+    // Start is called before the first frame update
+    void Start()
     {
 
     }
@@ -16,4 +18,6 @@ public class Weapon : MonoBehaviour
     {
 
     }
+
+    public abstract void attack();
 }
