@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float baseDamage = 1;
     public int baseHealth = 1;
     public float baseRegen = 1;
+    public GameObject enemy;
 
     void Awake()
     {
@@ -27,15 +28,21 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // Destroy object on death
+        if(baseHealth <= 0) {
+            Destroy(enemy);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         // It is Projectile(Clone) because the proj spawned are named this way"
-        if(col.gameObject.name == "Projectile(Clone)")
+        if(col.gameObject.GetComponent<Projectile>() != null)
         {
-            Debug.Log("Hit by projectile");
+            // Take damage
+            int projectileDamage = col.gameObject.GetComponent<Projectile>().damage;
+            Debug.Log("Hit by projectile took " + projectileDamage + " damage");
+            baseHealth -= projectileDamage;
         }
     }
 }
