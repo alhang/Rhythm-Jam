@@ -6,6 +6,7 @@ public abstract class Weapon : BeatListener
 {
     public int baseDamage;
     public float baseFireRate;
+    public GameObject projectile;
 
     // Start is called before the first frame update
     void Start()

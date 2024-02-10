@@ -43,9 +43,4 @@ public class Player : BeatListener
 
         player.velocity = new Vector2(horizontal * baseSpeed, vertical * baseSpeed);
     }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Entered collision with " + collision.gameObject.name);
-    }
 }
