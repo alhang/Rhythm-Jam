@@ -7,9 +7,8 @@ public class Projectile : MonoBehaviour
     public int damage;
     public Vector3 velocity;
 
-    public Projectile(Vector3 pos, Vector2 vel, int dam)
+    public Projectile(Vector2 vel, int dam)
     {
-        transform.position = pos;
         velocity = new Vector3(vel.x, vel.y, 0);
         damage = dam;
     }
@@ -23,6 +22,6 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += velocity;
+        transform.position += velocity * Time.deltaTime;
     }
 }
