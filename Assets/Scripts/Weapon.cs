@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : BeatListener
+public abstract class Weapon : BeatListener
 {
+    public int baseDamage;
+    public float baseFireRate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +18,6 @@ public class Weapon : BeatListener
     {
         
     }
+
+    public abstract void attack();
 }
