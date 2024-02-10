@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : BeatListener
+public class Weapon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float fireRate;
+    public float waitTime;
+
+    public void Activate()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnBeatHandler()
     {
-        
+
     }
 }

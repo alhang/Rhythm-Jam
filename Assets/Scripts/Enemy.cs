@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : BeatListener
+public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,10 @@ public class Enemy : BeatListener
     void Update()
     {
         
+    }
+
+    public void OnBeatHandler()
+    {
+
     }
 }

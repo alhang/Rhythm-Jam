@@ -2,17 +2,17 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using System;
-using Unity.VisualScripting;
 
 public class SongManager : Singleton<SongManager>
 {
     [SerializeField] private AudioSource audioSource;
     [SerializeField] TextMeshProUGUI sampledTimeDisplay;
     [SerializeField] AudioClip song;
-    [SerializeField] float bpm;
+    public float bpm;
 
     public static float time;
     public static float deltaTime;
+
     public static event Action OnBeat;
 
     public void ChangeSong(AudioClip song)
@@ -26,30 +26,36 @@ public class SongManager : Singleton<SongManager>
         audioSource.clip = song;
         audioSource.Play();
         StartCoroutine(CalculateDeltaTime());
-        StartCoroutine(InvokeOnBeat(bpm));
-    }
-
-    private IEnumerator InvokeOnBeat(float bpm)
-    {
-        while (true)
-        {
-            yield return new WaitUntil(() => audioSource.isPlaying);
-
-            OnBeat?.Invoke();
-            yield return new WaitForSeconds(60/bpm);
-        }
     }
 
     private IEnumerator CalculateDeltaTime()
     {
+        float quarterBeatInterval = 60 / (bpm * 4);
+        float timeElapsed = 0;
+
         while (true)
         {
+            // Wait until audioSource is playing
             yield return new WaitUntil(() => audioSource.isPlaying);
 
-            float sampleTime = (float)audioSource.timeSamples / audioSource.clip.frequency;
+            // Calculate the number of timeSamples that have passed
+            float sampleTime = (float) audioSource.timeSamples / audioSource.clip.frequency;
+
+            // Assign variables
             deltaTime = sampleTime - time;
             time = sampleTime;
-            sampledTimeDisplay.text = time.ToString();
+            timeElapsed += deltaTime;
+
+            // Display number of samples
+            //sampledTimeDisplay.text = time.ToString();
+
+            // If on quarterBeat invoke event
+            if(timeElapsed > quarterBeatInterval)
+            {
+                OnBeat?.Invoke();
+                timeElapsed -= quarterBeatInterval;
+                // Debug.Log("Quarter beat");
+            }
 
             yield return null;
         }
