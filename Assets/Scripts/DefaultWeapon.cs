@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class DefaultWeapon : Weapon
 {
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
         baseDamage = 1;
         baseFireRate = 1;
 
         projectile.velocity = new Vector3(0, 20, 0);
         projectile.damage = 1;
+    }
+
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
