@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     public void Fire(Vector2 angle, Vector2 startingPos)
     {
         transform.position = startingPos;
-        velocity = angle * projectileSpeed;
+        velocity = Vector3.Normalize(angle) * projectileSpeed;
     }
     
     void Update()

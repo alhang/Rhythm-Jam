@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     public int baseHealth = 10;
     public float baseRegen = 1;
 
-    public static Vector3 mouseDirection;
-    public static Vector3 position;
+    public static Vector2 mouseDirection;
+    public static Vector2 position;
 
     // Start is called before the first frame update
     void Start()
@@ -55,9 +55,8 @@ public class Player : MonoBehaviour
     public void SetMouseDirection()
     {
         mouseDirection = Input.mousePosition;
-        mouseDirection.z = 0.0f;
         mouseDirection = Camera.main.ScreenToWorldPoint(mouseDirection);
-        mouseDirection = Vector3.Normalize(mouseDirection - transform.position);
+        mouseDirection = mouseDirection - (Vector2)transform.position;
     }
 
     public void OnBeatHandler()
