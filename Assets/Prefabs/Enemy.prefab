@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 567022500944080986}
   - component: {fileID: 4041585223288533090}
   - component: {fileID: 2270116827618397872}
+  - component: {fileID: 5195472983474312813}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -102,3 +103,32 @@ MonoBehaviour:
   baseHealth: 1
   baseRegen: 1
   enemy: {fileID: 5437530725842898502}
+  enemyBulletPrefab: {fileID: 7766842883304330625, guid: ba6418800ca6048be9ebc0997bf00dba, type: 3}
+--- !u!114 &5195472983474312813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5437530725842898502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8878204d28942479eaa8a29bc5453643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onBeatEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2270116827618397872}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  beatInterval: 4

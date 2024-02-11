@@ -24,6 +24,26 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // TODO: On Death action
+        if(baseHealth <= 0) {
+            Debug.Log("Player Died");
+        }
+
+        Move();
+
+        // Finding the position of the mouse
+        SetMouseDirection();
+    }
+
+    public void SetMouseDirection()
+    {
+        mouseDirection = Input.mousePosition;
+        mouseDirection = Camera.main.ScreenToWorldPoint(mouseDirection);
+        mouseDirection = mouseDirection - (Vector2)transform.position;
+    }
+
+    void Move()
+    {
         float horizontal = 0;
         float vertical = 0;
 
@@ -45,22 +65,12 @@ public class Player : MonoBehaviour
             horizontal += baseSpeed;
         }
 
-        // Finding the position of the mouse
-        SetMouseDirection();
-
         position = transform.position;
         player.velocity = new Vector2(horizontal * baseSpeed, vertical * baseSpeed);
     }
 
-    public void SetMouseDirection()
+    public void TakeDamage(int damageAmount)
     {
-        mouseDirection = Input.mousePosition;
-        mouseDirection = Camera.main.ScreenToWorldPoint(mouseDirection);
-        mouseDirection = mouseDirection - (Vector2)transform.position;
-    }
-
-    public void OnBeatHandler()
-    {
-
+        baseHealth -= damageAmount;
     }
 }

@@ -5,10 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float baseSpeed = 2;
-    public float baseDamage = 1;
+    public int baseDamage = 1;
     public int baseHealth = 1;
     public float baseRegen = 1;
     public GameObject enemy;
+    private BeatListener beatListener;
+    public EnemyProjectile enemyBulletPrefab;
 
     void Awake()
     {
@@ -22,7 +24,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        beatListener = GetComponent<BeatListener>();
     }
 
     // Update is called once per frame
@@ -41,12 +43,6 @@ public class Enemy : MonoBehaviour
         baseHealth -= damageAmount;
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        // It is Projectile(Clone) because the proj spawned are named this way"
-        
-    }
-
     // Move towards Player
     void Move()
     {
@@ -54,5 +50,20 @@ public class Enemy : MonoBehaviour
         Vector3 direction = Vector3.Normalize(Player.position - enemyPosition);
 
         transform.position += direction * baseSpeed * Time.deltaTime;
+    }
+
+    // Fire projectile towards Player
+    public void Attack()
+    {
+        Vector2 enemyPosition = transform.position;
+        Vector3 direction = Vector3.Normalize(Player.position - enemyPosition);
+
+        EnemyProjectile projectile = Instantiate(enemyBulletPrefab);
+        projectile.damage = baseDamage;
+        projectile.projectileSpeed = 30;
+
+        projectile.Fire(direction, transform.position);
+
+        Debug.Log("Enemy Atk");
     }
 }
