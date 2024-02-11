@@ -34,15 +34,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int damageAmount)
+    {
+        baseHealth -= damageAmount;
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         // It is Projectile(Clone) because the proj spawned are named this way"
-        if(col.gameObject.GetComponent<Projectile>() != null)
-        {
-            // Take damage
-            int projectileDamage = col.gameObject.GetComponent<Projectile>().damage;
-            Debug.Log("Hit by projectile took " + projectileDamage + " damage");
-            baseHealth -= projectileDamage;
-        }
+        
     }
 }

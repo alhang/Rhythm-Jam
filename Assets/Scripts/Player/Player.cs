@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Player : MonoBehaviour
     public float baseDamage = 1;
     public int baseHealth = 10;
     public float baseRegen = 1;
+
+    public static Vector3 mouseDirection;
+    public static Vector3 position;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +45,19 @@ public class Player : MonoBehaviour
             horizontal += baseSpeed;
         }
 
+        // Finding the position of the mouse
+        SetMouseDirection();
+
+        position = transform.position;
         player.velocity = new Vector2(horizontal * baseSpeed, vertical * baseSpeed);
+    }
+
+    public void SetMouseDirection()
+    {
+        mouseDirection = Input.mousePosition;
+        mouseDirection.z = 0.0f;
+        mouseDirection = Camera.main.ScreenToWorldPoint(mouseDirection);
+        mouseDirection = Vector3.Normalize(mouseDirection - transform.position);
     }
 
     public void OnBeatHandler()

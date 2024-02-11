@@ -18,10 +18,13 @@ public class Boundary : MonoBehaviour
     }
 
     // Deletes projectiles that hit boundary
-    void OnCollisionEnter2D(Collision2D col) {
-        Debug.Log("Hit boundary");
-        if(col.gameObject.GetComponent<Projectile>() != null) {
-            Destroy(col.gameObject);
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Projectile projectile))
+        {
+            Debug.Log("Hit boundary");
+            projectile.Despawn();
         }
     }
 }
