@@ -7,7 +7,8 @@ public class Pistol : Weapon
 
 	public override void Attack()
 	{
-		Instantiate(pistolBulletPrefab).Fire(Player.mouseDirection, Player.position);
+		base.Attack();
+		Instantiate(pistolBulletPrefab).Fire(direction, transform.position, target, projectileSpeed, baseDamage);
     }
 }
 

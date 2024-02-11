@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D player;
     public float baseSpeed = 2;
     public float baseDamage = 1;
-    public int baseHealth = 10;
+    public float baseHealth = 10;
     public float baseRegen = 1;
 
     public static Vector2 mouseDirection;
@@ -69,8 +69,10 @@ public class Player : MonoBehaviour
         player.velocity = new Vector2(horizontal * baseSpeed, vertical * baseSpeed);
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         baseHealth -= damageAmount;
+        if (baseHealth <= 0)
+            Debug.Log("You died");
     }
 }

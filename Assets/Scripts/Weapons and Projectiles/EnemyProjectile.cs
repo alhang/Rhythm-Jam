@@ -4,20 +4,5 @@ using UnityEngine;
 
 public class EnemyProjectile : Projectile
 {
-    void Update()
-    {
-        transform.position += velocity * Time.deltaTime;
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Player player))
-        {
-            Debug.Log("Hit Player");
-
-            // Take damage
-            player.TakeDamage(damage);
-            Despawn();
-        }
-    }
 }

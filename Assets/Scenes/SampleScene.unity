@@ -248,6 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 1
   rateOfFire: 4
+  projectileSpeed: 30
+  target: 1
   pistolBulletPrefab: {fileID: 5698545278142209657, guid: 4f59e74df5a964aa3b4065d08100c815, type: 3}
 --- !u!114 &148028448
 MonoBehaviour:
@@ -474,67 +476,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &232851292
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 567022500944080986, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 567022500944080986, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 567022500944080986, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 567022500944080986, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 567022500944080986, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 567022500944080986, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 567022500944080986, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 567022500944080986, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 567022500944080986, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 567022500944080986, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2270116827618397872, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: pistolBulletPrefab
-      value: 
-      objectReference: {fileID: 5698545278142209657, guid: 4f59e74df5a964aa3b4065d08100c815, type: 3}
-    - target: {fileID: 5437530725842898502, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
-      propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
 --- !u!1 &495524487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,7 +1442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1044860377
 Transform:
   m_ObjectHideFlags: 0
@@ -1531,6 +1472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 1
   rateOfFire: 8
+  projectileSpeed: 25
+  target: 1
   shotgunBulletPrefab: {fileID: 5698545278142209657, guid: 4f59e74df5a964aa3b4065d08100c815, type: 3}
   spread: 10
   numBullets: 5
@@ -1944,7 +1887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1981339820
 Transform:
   m_ObjectHideFlags: 0
@@ -2002,6 +1945,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 1
   rateOfFire: 4
+  projectileSpeed: 40
+  target: 1
   pistolBulletPrefab: {fileID: 5698545278142209657, guid: 4f59e74df5a964aa3b4065d08100c815, type: 3}
 --- !u!212 &1981339823
 SpriteRenderer:
@@ -2084,7 +2029,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c927da6fea0e4469f8f665a539029d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 2270116827618397872, guid: 2a7412b69c69544ad8bb9a28f15badd0, type: 3}
+  basicEnemy: {fileID: 6549849502405705974, guid: 56deab746875a4219bdfa00283c876b6, type: 3}
+  shotgunEnemy: {fileID: 832032087653674712, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
   spawnRate: 4
 --- !u!4 &2016214917
 Transform:
@@ -2114,4 +2060,3 @@ SceneRoots:
   - {fileID: 642825285}
   - {fileID: 731050372}
   - {fileID: 2016214917}
-  - {fileID: 232851292}

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float baseSpeed = 2;
-    public int baseDamage = 1;
-    public int baseHealth = 1;
+    public float baseDamage = 1;
+    public float baseHealth = 1;
     public float baseRegen = 1;
     public GameObject enemy;
     private BeatListener beatListener;
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         baseHealth -= damageAmount;
     }
@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
     // Fire projectile towards Player
     public void Attack()
     {
+        /*
         Vector2 enemyPosition = transform.position;
         Vector3 direction = Vector3.Normalize(Player.position - enemyPosition);
 
@@ -62,8 +63,9 @@ public class Enemy : MonoBehaviour
         projectile.damage = baseDamage;
         projectile.projectileSpeed = 30;
 
-        projectile.Fire(direction, transform.position);
+        projectile.Fire(direction, transform.position, Target.Player);
 
         Debug.Log("Enemy Atk");
+        */
     }
 }

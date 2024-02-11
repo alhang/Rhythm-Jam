@@ -163,4 +163,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   velocity: {x: 0, y: 0, z: 0}
-  projectileSpeed: 50
+  projectileSpeed: 30
+  target: 1

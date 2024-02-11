@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public Enemy enemy;
+    public Enemy basicEnemy;
+    public Enemy shotgunEnemy;
     public float spawnRate = 4;
     private float timer = 0;
 
@@ -28,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
 
     // TODO: Currently placeholder spawn position
     void spawnEnemy() {
+        Enemy enemy = Random.Range(0, 2) == 0 ? basicEnemy : shotgunEnemy;
         Instantiate(enemy, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
     } 
 }
