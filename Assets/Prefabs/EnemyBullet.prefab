@@ -163,4 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   velocity: {x: 0, y: 0, z: 0}
-  projectileSpeed: 10
+  projectileSpeed: 0
