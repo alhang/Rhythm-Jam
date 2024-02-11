@@ -35,6 +35,10 @@ public class Projectile : MonoBehaviour
             player.TakeDamage(damage);
             Despawn();
         }
+        else if (collision.gameObject.TryGetComponent(out Boundary boundary))
+        {
+            Despawn();
+        }
     }
 
     public void Despawn()

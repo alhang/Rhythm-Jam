@@ -12,6 +12,8 @@ public class SongManager : Singleton<SongManager>
 
     public static float time;
     public static float deltaTime;
+    public static float timeSinceLastQuarterBeat;
+    public static float quarterBeatInterval;
 
     public static event Action OnBeat;
 
@@ -30,8 +32,8 @@ public class SongManager : Singleton<SongManager>
 
     private IEnumerator CalculateDeltaTime()
     {
-        float quarterBeatInterval = 60 / (bpm * 4);
-        float timeElapsed = 0;
+        quarterBeatInterval = 60 / (bpm * 4);
+        timeSinceLastQuarterBeat = 0;
 
         while (true)
         {
@@ -44,16 +46,16 @@ public class SongManager : Singleton<SongManager>
             // Assign variables
             deltaTime = sampleTime - time;
             time = sampleTime;
-            timeElapsed += deltaTime;
+            timeSinceLastQuarterBeat += deltaTime;
 
             // Display number of samples
             //sampledTimeDisplay.text = time.ToString();
 
             // If on quarterBeat invoke event
-            if(timeElapsed > quarterBeatInterval)
+            if(timeSinceLastQuarterBeat > quarterBeatInterval)
             {
                 OnBeat?.Invoke();
-                timeElapsed -= quarterBeatInterval;
+                timeSinceLastQuarterBeat -= quarterBeatInterval;
                 // Debug.Log("Quarter beat");
             }
 

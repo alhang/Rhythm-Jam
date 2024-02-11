@@ -11,7 +11,7 @@ public class BeatListener : MonoBehaviour
     public int beatInterval = 4;
 
     // Number of beats since last trigger of OnBeatHandler
-    private int beatCount = 0;
+    public int beatCount = 0;
 
     private void OnEnable()
 	{
