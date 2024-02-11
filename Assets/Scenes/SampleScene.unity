@@ -208,7 +208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &148028446
 Transform:
   m_ObjectHideFlags: 0
@@ -1248,6 +1248,7 @@ MonoBehaviour:
   baseHealth: 10
   baseRegen: 1
   dashKey: 32
+  dashCooldown: 3
   isDashOnCooldown: 0
 --- !u!212 &642825284
 SpriteRenderer:
@@ -2217,7 +2218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1981339820
 Transform:
   m_ObjectHideFlags: 0

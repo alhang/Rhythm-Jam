@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public static Vector2 position;
 
     public KeyCode dashKey = KeyCode.Space;
-
+    public float dashCooldown = 5;
     public bool isDashOnCooldown;
 
     // Start is called before the first frame update
@@ -88,11 +88,11 @@ public class Player : MonoBehaviour
     public void TryDash()
     {
         Dash();
-        if ( !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval / 2) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval / 2)))
+        if ( !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.75f) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval * 0.25f)))
         {
             Debug.Log("Dash is on cooldown");
             isDashOnCooldown = true;
-            SyncedTimer timer = new SyncedTimer(5, () => { isDashOnCooldown = false; Debug.Log("Dash is off cooldown"); });
+            SyncedTimer timer = new SyncedTimer(dashCooldown, () => { isDashOnCooldown = false; Debug.Log("Dash is off cooldown"); });
             StartCoroutine(timer.Start());
         }
     }
