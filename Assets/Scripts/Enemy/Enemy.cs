@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour
         if(baseHealth <= 0) {
             Destroy(enemy);
         }
+
+        Move();
     }
 
     public void TakeDamage(int damageAmount)
@@ -43,5 +45,14 @@ public class Enemy : MonoBehaviour
     {
         // It is Projectile(Clone) because the proj spawned are named this way"
         
+    }
+
+    // Move towards Player
+    void Move()
+    {
+        Vector2 enemyPosition = transform.position;
+        Vector3 direction = Vector3.Normalize(Player.position - enemyPosition);
+
+        transform.position += direction * baseSpeed * Time.deltaTime;
     }
 }
