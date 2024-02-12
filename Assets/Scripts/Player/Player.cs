@@ -122,8 +122,9 @@ public class Player : MonoBehaviour
 
     public void TryParry()
     {
-        bool isParrySuccessful = parryZone.Parry();
-        if (!isParrySuccessful || !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.75f) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval * 0.25f)))
+        // parryZone.Parry();
+        StartCoroutine(parryZone.ParrySweep());
+        if (!((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.75f) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval * 0.25f)))
         {
             Debug.Log("Parry is on cooldown");
             isParryOnCooldown = true;
