@@ -3,14 +3,6 @@ using System.Collections;
 
 public class Room : MonoBehaviour
 {
-    public void Enter()
-    {
-        
-    }
-
-    public void LoadNewRooms()
-    {
-
-    }
+    public Transform startingPosition;
 }
 

@@ -26,7 +26,7 @@ public class ParryZone : MonoBehaviour
         transform.up = Player.mouseDirection;
     }
 
-    public void Parry()
+    public bool Parry()
     {
         if (enemyProjectiles.Count > 0)
         {
@@ -40,7 +40,10 @@ public class ParryZone : MonoBehaviour
                 }
             }
             enemyProjectiles.Clear();
+            return true;
         }
+        else
+            return false;
         
     }
 }
