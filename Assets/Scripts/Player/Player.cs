@@ -20,18 +20,27 @@ public class Player : MonoBehaviour
 
     public KeyCode dashKey = KeyCode.Space;
     public float dashCooldown = 5;
-    public bool isDashOnCooldown;
+    private bool isDashOnCooldown;
+
+    public float parryCooldown = 5;
+    private bool isParryOnCooldown;
+
+    private ParryZone parryZone;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         beatListener = GetComponent<BeatListener>();
+        parryZone = GetComponentInChildren<ParryZone>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isParryOnCooldown && Input.GetMouseButtonDown(0))
+            TryParry();
+
         if (!isDashOnCooldown && Input.GetKeyDown(dashKey))
             TryDash();
         else
@@ -87,7 +96,8 @@ public class Player : MonoBehaviour
     // Checks if dash is on beat
     public void TryDash()
     {
-        Dash();
+        StartCoroutine(Dash());
+        // Tolerance
         if ( !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.75f) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval * 0.25f)))
         {
             Debug.Log("Dash is on cooldown");
@@ -97,14 +107,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Dash()
-    {
-        Debug.Log("Dashed");
-        StartCoroutine(DashCoroutine());
-    }
-
     // Need to add force over several frames otherwise doesn't work
-    IEnumerator DashCoroutine()
+    IEnumerator Dash()
     {
         float timeElapsed = 0;
         float dashTime = 0.1f;
@@ -113,6 +117,18 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.Normalize(mouseDirection) * baseSpeed * dashSpeed * Time.deltaTime);
             timeElapsed += Time.deltaTime;
             yield return null;
+        }
+    }
+
+    public void TryParry()
+    {
+        parryZone.Parry();
+        if (!((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.75f) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval * 0.25f)))
+        {
+            Debug.Log("Parry is on cooldown");
+            isParryOnCooldown = true;
+            SyncedTimer timer = new SyncedTimer(parryCooldown, () => { isParryOnCooldown = false; Debug.Log("Parry is off cooldown"); });
+            StartCoroutine(timer.Start());
         }
     }
 }

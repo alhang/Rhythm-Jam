@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private float damage;
-    private Vector3 velocity;
+    public float damage { get; private set; }
+    public Vector3 velocity { get; private set; }
     private float projectileSpeed;
-    private Target target;
+    public Target target { get; private set; }
 
     public void Fire(Vector2 angle, Vector2 startingPos, Target target, float projectileSpeed, float damage)
     {
@@ -17,7 +17,14 @@ public class Projectile : MonoBehaviour
         transform.position = startingPos;
         velocity = Vector3.Normalize(angle) * projectileSpeed;
     }
-    
+
+    public void Fire(Vector2 velocity, Target target, float damage)
+    {
+        this.damage = damage;
+        this.target = target;
+        this.velocity = velocity;
+    }
+
     void Update()
     {
         transform.position += velocity * Time.deltaTime;

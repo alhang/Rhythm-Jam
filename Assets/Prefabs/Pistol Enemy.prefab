@@ -133,6 +133,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   beatInterval: 4
+  beatCount: 0
 --- !u!1 &7540893049115210068
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,6 +248,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   beatInterval: 4
+  beatCount: 0
 --- !u!114 &6940317186127550466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 1
   rateOfFire: 4
-  projectileSpeed: 10
+  projectileSpeed: 5
   target: 0
   pistolBulletPrefab: {fileID: 7766842883304330625, guid: ba6418800ca6048be9ebc0997bf00dba, type: 3}
