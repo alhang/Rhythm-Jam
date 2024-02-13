@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BeatTester : MonoBehaviour
+public class Pulser : MonoBehaviour
 {
 	// Scale percentage
 	public float scaleBy = 1.1f;
@@ -31,7 +31,7 @@ public class BeatTester : MonoBehaviour
 		float timeElapsed = 0;
 		while (timeElapsed < pulseTime)
 		{
-            timeElapsed += SongManager.deltaTime;
+            timeElapsed += Time.deltaTime;
 			percentDone = timeElapsed / pulseTime;
 			transform.localScale = Vector2.Lerp(modifiedScale, originalScale, percentDone);
 			yield return null;
