@@ -29,7 +29,11 @@ public class Sword : Weapon
 
         if(target == Target.Player)
         {
-            
+            if(timeElapsed >= attackTime){
+                Vector2 position = transform.position;
+                Vector3 direction = Vector3.Normalize(Player.position - position);
+                transform.up = Quaternion.Euler(0, 0, 60) * direction;
+            }
         }
         
     }
