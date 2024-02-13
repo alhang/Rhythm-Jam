@@ -90,9 +90,9 @@ public class FirstBoss : MonoBehaviour
     void PhaseThreeAttack()
     {
         if ((numBeats - 2) % 4 == 0)
-            ShotgunAttack(leftShotgun, 50, 3, 5);
+            ShotgunAttack(leftShotgun, 25, 3, 5);
         else if (numBeats % 4 == 0)
-            ShotgunAttack(rightShotgun, 50, 3, 5);
+            ShotgunAttack(rightShotgun, 25, 3, 5);
 
         if (numBeats % 8 == 0)
             ShotgunAttack(middleShotgun, 18, 20, 5);

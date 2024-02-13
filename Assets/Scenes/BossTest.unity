@@ -42414,13 +42414,29 @@ MonoBehaviour:
   beatsUntilReset: 16
   numBeats: 0
   phase: 1
-  leftPistol: {fileID: 0}
-  rightPistol: {fileID: 0}
-  leftShotgun: {fileID: 0}
-  middleShotgun: {fileID: 0}
-  rightShotgun: {fileID: 0}
+  leftPistol: {fileID: 1827355419}
+  rightPistol: {fileID: 648049446}
+  leftShotgun: {fileID: 722615059}
+  middleShotgun: {fileID: 939461975}
+  rightShotgun: {fileID: 166227255}
   timeStampIndex: 0
-  timeStamps: []
+  timeStamps:
+  - timeStamp: 50
+    phase: 1
+  - timeStamp: 91
+    phase: 2
+  - timeStamp: 101
+    phase: 1
+  - timeStamp: 110
+    phase: 2
+  - timeStamp: 151
+    phase: 3
+  - timeStamp: 171
+    phase: 5
+  - timeStamp: 192
+    phase: 1
+  - timeStamp: 250
+    phase: 4
 --- !u!4 &2137934377
 Transform:
   m_ObjectHideFlags: 0
