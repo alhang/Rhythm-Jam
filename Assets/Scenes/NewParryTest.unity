@@ -1906,7 +1906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2016214916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1919,8 +1919,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c927da6fea0e4469f8f665a539029d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicEnemy: {fileID: 6549849502405705974, guid: 56deab746875a4219bdfa00283c876b6, type: 3}
-  shotgunEnemy: {fileID: 832032087653674712, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
+  basicEnemy: {fileID: 3798732946511098366, guid: 268d048006a864528911757df6f32018, type: 3}
+  shotgunEnemy: {fileID: 3798732946511098366, guid: 268d048006a864528911757df6f32018, type: 3}
   spawnRate: 4
 --- !u!4 &2016214917
 Transform:

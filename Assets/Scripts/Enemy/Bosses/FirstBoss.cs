@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using TMPro;
 
 public class FirstBoss : Enemy
 {
@@ -19,11 +20,24 @@ public class FirstBoss : Enemy
     public List<TimeStamps> timeStamps;
     private TimeStamps curTimeStamp => timeStamps[timeStampIndex];
 
+    [SerializeField] private TextMeshProUGUI timer;
+    public float maxTimer = 253.022f;
+
+    private bool hasBattleEnded = false;
+
     private void Update()
     {
         if (timeStampIndex < timeStamps.Count && SongManager.time >= curTimeStamp.timeStamp) {
             timeStampIndex++;
             phase = curTimeStamp.phase;
+        }
+        float timeLeft = maxTimer - SongManager.time;
+        timeLeft = timeLeft < 0.1f ? 0 : timeLeft;
+        timer.text = timeLeft.ToString("0.00");
+        if (timeLeft == 0 && !hasBattleEnded)
+        {
+            EndBattle();
+            hasBattleEnded = true;
         }
     }
 
@@ -96,7 +110,7 @@ public class FirstBoss : Enemy
         }
 
         if (numBeats % 8 == 0)
-            ShotgunAttack(middleShotgun, 18, 20, 5);
+            ShotgunAttack(middleShotgun, 20, 18, 5);
     }
 
     void PhaseFourAttack()
@@ -108,7 +122,7 @@ public class FirstBoss : Enemy
             ShotgunAttack(rightShotgun, 45, 8, 5);
         }
         if (beats % 8 == 0)
-            ShotgunAttack(middleShotgun, 18, 20, 5);
+            ShotgunAttack(middleShotgun, 20, 18, 5);
     }
 
     public int phaseFiveOffset = 0;
@@ -140,7 +154,7 @@ public class FirstBoss : Enemy
         if (beats[beat] == 2)
             ShotgunAttack(rightShotgun, 36, 10, 5);
         if (beats[beat] == 3)
-            ShotgunAttack(middleShotgun, 18, 20, 5);
+            ShotgunAttack(middleShotgun, 20, 18, 5);
     }
 
 
@@ -158,19 +172,9 @@ public class FirstBoss : Enemy
         shotgun.Attack();
     }
 
-    void BasicMeleeAttack()
+    void EndBattle()
     {
-
-    }
-
-    void SpecialMeleeAttack()
-    {
-
-    }
-
-    void ResetBeats()
-    {
-        numBeats = 0;
+        GameManager.Instance.OnRoomClear();
     }
 }
 

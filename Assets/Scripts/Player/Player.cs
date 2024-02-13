@@ -105,12 +105,24 @@ public class Player : MonoBehaviour
         playerHUD.UpdateHealthBar();
     }
 
+    public void Heal(float healAmount)
+    {
+        curHealth += healAmount;
+
+        playerHUD.UpdateHealthBar();
+
+        if (curHealth <= maxHealth)
+        {
+            curHealth = maxHealth;
+        }
+    }
+
     // Checks if dash is on beat
     public void TryDash()
     {
         StartCoroutine(Dash());
         Debug.Log(beatListener.beatCount);
-        if ( !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.75f) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval * 0.25f)))
+        if ( !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.5f) || beatListener.beatCount == 3))
         {
             //Debug.Log("Dash is on cooldown");
             isDashOnCooldown = true;
@@ -136,7 +148,7 @@ public class Player : MonoBehaviour
     public void TryParry()
     {
         StartCoroutine(parryZone.ParrySweep());
-        if (ParryZone.failedParry || !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.75f) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval * 0.25f)))
+        if (ParryZone.failedParry || !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.5f) || beatListener.beatCount == 3 ))
         {
             //Debug.Log("Parry is on cooldown");
             isParryOnCooldown = true;

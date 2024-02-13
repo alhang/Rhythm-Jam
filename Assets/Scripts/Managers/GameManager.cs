@@ -55,7 +55,7 @@ public class GameManager : Singleton<GameManager>
             difficulty += 2;
         Debug.Log("Player exited");
 
-        EnemySpawner.Instance.SetDifficulty(difficulty);
+        //EnemySpawner.Instance.SetDifficulty(difficulty);
         enemiesKilledInRoom = 0;
         Enemy.KillAll();
 
