@@ -1,11 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : Singleton<EnemySpawner>
 {
-    public Enemy basicEnemy;
-    public Enemy shotgunEnemy;
+    public Enemy[] enemyPrefabs;
     public float spawnRate = 4;
     private float timer = 0;
 
@@ -24,7 +24,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
     // TODO: Currently placeholder spawn position
     private void SpawnEnemy() {
         spawnRate -= spawnRate >= 0.3f ? 0.1f : 0;
-        Enemy enemy = Random.Range(0, 2) == 0 ? basicEnemy : shotgunEnemy;
+        Enemy enemy = enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
         Instantiate(enemy, transform);
     }
 
