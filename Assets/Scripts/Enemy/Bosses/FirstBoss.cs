@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using System.Collections;
 
-public class FirstBoss : MonoBehaviour
+public class FirstBoss : Enemy
 {
-    public float baseSpeed = 2;
-    public float baseDamage = 1;
-    public float baseHealth = 100;
-    public float baseRegen = 1;
-
     public int beatsUntilReset = 16;
     public int numBeats = 0;
 
