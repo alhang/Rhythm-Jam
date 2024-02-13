@@ -12,7 +12,10 @@ public class Player : MonoBehaviour
     public float baseSpeed = 2;
     public float dashSpeed = 3;
     public float baseDamage = 1;
-    public float baseHealth = 10;
+    // baseHealth is the current health TODO: maybe change baseHealth to currentHealth
+    public static float baseHealth = 10;
+    // maxHealth is the maximum health possible
+    public static float maxHealth = 10;
     public float baseRegen = 1;
 
     public static Vector2 mouseDirection;
@@ -33,6 +36,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         beatListener = GetComponent<BeatListener>();
         parryZone = GetComponentInChildren<ParryZone>();
+
+        baseHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -89,8 +94,11 @@ public class Player : MonoBehaviour
         baseHealth -= damageAmount;
 
         // TODO: On Death action
-        if (baseHealth <= 0)
+        if (baseHealth <= 0) 
+        {
+            baseHealth = 0;
             Debug.Log("You died");
+        }
     }
 
     // Checks if dash is on beat
