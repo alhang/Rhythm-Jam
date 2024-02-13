@@ -11,6 +11,9 @@ public class ParryZone : MonoBehaviour
     private float timeElapsed;
     private float parryTime;
 
+    // Referenced in Player.TryParry()
+    public static bool failedParry = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,27 +43,28 @@ public class ParryZone : MonoBehaviour
             transform.up = Quaternion.Euler(0, 0, -30) * transform.up;
         }
     }
-
-    public bool Parry()
-    {
-        if (enemyProjectiles.Count > 0)
-        {
-            //Debug.Log("Parried");
-            foreach (Projectile projectile in enemyProjectiles)
-            {
-                if (projectile != null)
-                {
-                    projectile.Fire(-projectile.velocity, Target.Enemy, 2 * projectile.damage);
-                    projectile.GetComponent<SpriteRenderer>().color = Color.white;
-                }
-            }
-            enemyProjectiles.Clear();
-            return true;
-        }
-        else
-            return false;
+    
+    // OLD PARRY METHOD
+    // public bool Parry()
+    // {
+    //     if (enemyProjectiles.Count > 0)
+    //     {
+    //         //Debug.Log("Parried");
+    //         foreach (Projectile projectile in enemyProjectiles)
+    //         {
+    //             if (projectile != null)
+    //             {
+    //                 projectile.Fire(-projectile.velocity, Target.Enemy, 2 * projectile.damage);
+    //                 projectile.GetComponent<SpriteRenderer>().color = Color.white;
+    //             }
+    //         }
+    //         enemyProjectiles.Clear();
+    //         return true;
+    //     }
+    //     else
+    //         return false;
         
-    }
+    // }
 
     public IEnumerator ParrySweep()
     {
@@ -69,20 +73,23 @@ public class ParryZone : MonoBehaviour
         float initialRotation = rb.rotation;
         float targetRotation = initialRotation - rotationAmount;
 
+        failedParry = true;
+
         while (timeElapsed < parryTime)
         {
             if (enemyProjectiles.Count > 0)
             {
-            //Debug.Log("Parried");
-            foreach (Projectile projectile in enemyProjectiles)
-            {
-                if (projectile != null)
+                //Debug.Log("Parried");
+                foreach (Projectile projectile in enemyProjectiles)
                 {
-                    projectile.Fire(-projectile.velocity, Target.Enemy, 2 * projectile.damage);
-                    projectile.GetComponent<SpriteRenderer>().color = Color.white;
+                    if (projectile != null)
+                    {
+                        projectile.Fire(-projectile.velocity, Target.Enemy, 2 * projectile.damage);
+                        projectile.GetComponent<SpriteRenderer>().color = Color.white;
+                    }
                 }
-            }
-            enemyProjectiles.Clear();
+                enemyProjectiles.Clear();
+                failedParry = false;
             }
 
             // Rotate in parry motion
