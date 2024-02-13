@@ -3,46 +3,30 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class PlayerHUD : MonoBehaviour
 {
 
     /* Health Bar*/
     public TMPro.TextMeshProUGUI healthText;
-    public RectTransform healthRect;
+    public Image healthBarFill;
 
     // Cache width of health bar visual
-    private float cachedWidth;
+    //private float cachedWidth;
 
 
     /* Cooldowns */
-    public UnityEngine.UI.Image dashImg;
-    public UnityEngine.UI.Image parryImg;
+    public Image dashImg;
+    public Image parryImg;
 
     void Start()
     {
-        cachedWidth = healthRect.rect.width;
+        //cachedWidth = healthRect.rect.width;
     }
 
-    void Update()
+    public void UpdateHealthBar()
     {
-        if(healthText != null)
-        {
-            healthText.SetText("Health: " + Player.baseHealth + "/" + Player.maxHealth);
-        }
-        if(healthRect != null)
-        {
-            UpdateHealthBar();
-        }
-
-        if(dashImg && parryImg){
-            UpdateCooldowns();
-        }
-    }
-
-    void UpdateHealthBar()
-    {
+        /*
         Vector2 anchorMin = healthRect.anchorMin;
         Vector2 anchorMax = healthRect.anchorMax;
 
@@ -51,9 +35,13 @@ public class PlayerHUD : MonoBehaviour
         anchorMax.x = newAnchorMaxX;
 
         healthRect.anchorMax = anchorMax;
+        */
+
+        healthText.SetText("Health: " + Player.curHealth + "/" + Player.maxHealth);
+        healthBarFill.fillAmount = (float)(Player.curHealth / Player.maxHealth);
     }
 
-    void UpdateCooldowns()
+    public void UpdateCooldowns()
     {
         if(Player.isDashOnCooldown)
         {

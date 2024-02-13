@@ -7,31 +7,27 @@ public class Enemy : MonoBehaviour
 {
     public float baseSpeed = 2;
     public float baseDamage = 1;
-    public float baseHealth = 1;
+
+    public float maxHealth = 1;
+    public float curHealth { get; private set; }
+
     public float baseRegen = 1;
-    public GameObject enemy;
-    private BeatListener beatListener;
-    public EnemyProjectile enemyBulletPrefab;
 
     public static event Action<Enemy> OnEnemyKill;
+
+    public event Action OnTakeDamage;
 
     private static HashSet<Enemy> allEnemies = new();
 
     void Awake()
     {
-        gameObject.AddComponent<BoxCollider2D>();
-
-        Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.gravityScale = 0;
-
         allEnemies.Add(this);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        beatListener = GetComponent<BeatListener>();
+        curHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -42,9 +38,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        baseHealth -= damageAmount;
+        curHealth -= damageAmount;
+        OnTakeDamage?.Invoke();
 
-        if (baseHealth <= 0)
+        if (curHealth <= 0)
         {
             Die();
         }
@@ -54,7 +51,7 @@ public class Enemy : MonoBehaviour
     {
         OnEnemyKill?.Invoke(this);
         allEnemies.Remove(this);
-        Destroy(enemy);
+        Destroy(gameObject);
     }
 
     // Move towards Player
@@ -64,23 +61,6 @@ public class Enemy : MonoBehaviour
         Vector3 direction = Vector3.Normalize(Player.position - enemyPosition);
 
         transform.position += direction * baseSpeed * Time.deltaTime;
-    }
-
-    // Fire projectile towards Player
-    public void Attack()
-    {
-        /*
-        Vector2 enemyPosition = transform.position;
-        Vector3 direction = Vector3.Normalize(Player.position - enemyPosition);
-
-        EnemyProjectile projectile = Instantiate(enemyBulletPrefab);
-        projectile.damage = baseDamage;
-        projectile.projectileSpeed = 30;
-
-        projectile.Fire(direction, transform.position, Target.Player);
-
-        Debug.Log("Enemy Atk");
-        */
     }
 
     public static void KillAll()

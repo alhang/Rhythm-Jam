@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public float dashSpeed = 3;
     public float baseDamage = 1;
     // baseHealth is the current health TODO: maybe change baseHealth to currentHealth
-    public static float baseHealth = 10;
+    public static float curHealth = 10;
     // maxHealth is the maximum health possible
     public static float maxHealth = 10;
     public float baseRegen = 1;
@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
 
     private ParryZone parryZone;
 
+    [SerializeField] PlayerHUD playerHUD;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,7 @@ public class Player : MonoBehaviour
         beatListener = GetComponent<BeatListener>();
         parryZone = GetComponentInChildren<ParryZone>();
 
-        baseHealth = maxHealth;
+        curHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -91,12 +93,14 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        baseHealth -= damageAmount;
+        curHealth -= damageAmount;
+
+        playerHUD.UpdateHealthBar();
 
         // TODO: On Death action
-        if (baseHealth <= 0) 
+        if (curHealth <= 0) 
         {
-            baseHealth = 0;
+            curHealth = 0;
             Debug.Log("You died");
         }
     }
@@ -105,12 +109,13 @@ public class Player : MonoBehaviour
     public void TryDash()
     {
         StartCoroutine(Dash());
-        // Tolerance
+        Debug.Log(beatListener.beatCount);
         if ( !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.75f) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval * 0.25f)))
         {
-            Debug.Log("Dash is on cooldown");
+            //Debug.Log("Dash is on cooldown");
             isDashOnCooldown = true;
-            SyncedTimer timer = new SyncedTimer(dashCooldown, () => { isDashOnCooldown = false; Debug.Log("Dash is off cooldown"); });
+            playerHUD.UpdateCooldowns();
+            SyncedTimer timer = new SyncedTimer(dashCooldown, () => { isDashOnCooldown = false; playerHUD.UpdateCooldowns(); });
             StartCoroutine(timer.Start());
         }
     }
@@ -133,9 +138,10 @@ public class Player : MonoBehaviour
         StartCoroutine(parryZone.ParrySweep());
         if (ParryZone.failedParry || !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.75f) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval * 0.25f)))
         {
-            Debug.Log("Parry is on cooldown");
+            //Debug.Log("Parry is on cooldown");
             isParryOnCooldown = true;
-            SyncedTimer timer = new SyncedTimer(parryCooldown, () => { isParryOnCooldown = false; Debug.Log("Parry is off cooldown"); });
+            playerHUD.UpdateCooldowns();
+            SyncedTimer timer = new SyncedTimer(parryCooldown, () => { isParryOnCooldown = false; playerHUD.UpdateCooldowns(); });
             StartCoroutine(timer.Start());
         }
     }

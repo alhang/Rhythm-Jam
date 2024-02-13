@@ -61,7 +61,8 @@ public class SongManager : Singleton<SongManager>
             timeSinceLastQuarterBeat += deltaTime;
 
             // Display number of samples
-            sampledTimeDisplay.text = time.ToString();
+            if(sampledTimeDisplay != null)
+                sampledTimeDisplay.text = time.ToString();
 
             // If on quarterBeat invoke event
             if(timeSinceLastQuarterBeat > quarterBeatInterval)

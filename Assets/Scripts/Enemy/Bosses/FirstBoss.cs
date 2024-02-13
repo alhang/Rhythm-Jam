@@ -61,6 +61,11 @@ public class FirstBoss : MonoBehaviour
             case 5:
                 PhaseFiveAttack();
                 break;
+            case 6:
+                PhaseSixAttack();
+                break;
+            default:
+                break;
         }
 
     }
@@ -82,17 +87,18 @@ public class FirstBoss : MonoBehaviour
         }
         if ((numBeats - 4) % 8 == 0)
         {
-            ShotgunAttack(leftShotgun, 30, 7, 5);
-            ShotgunAttack(rightShotgun, 30, 7, 5);
+            ShotgunAttack(leftShotgun, 30, 6, 5);
+            ShotgunAttack(rightShotgun, 30, 6, 5);
         }
     }
 
     void PhaseThreeAttack()
     {
-        if ((numBeats - 2) % 4 == 0)
-            ShotgunAttack(leftShotgun, 25, 3, 5);
-        else if (numBeats % 4 == 0)
-            ShotgunAttack(rightShotgun, 25, 3, 5);
+        if (numBeats % 4 == 0)
+        {
+            ShotgunAttack(leftShotgun, 20, 4, 5);
+            ShotgunAttack(rightShotgun, 20, 4, 5);
+        }
 
         if (numBeats % 8 == 0)
             ShotgunAttack(middleShotgun, 18, 20, 5);
@@ -110,15 +116,36 @@ public class FirstBoss : MonoBehaviour
             ShotgunAttack(middleShotgun, 18, 20, 5);
     }
 
+    public int phaseFiveOffset = 0;
     void PhaseFiveAttack()
     {
-        int[] beats = { 3, 7, 10 };
+        int beat = (numBeats + phaseFiveOffset) % 16;
+        int[] beats = { 0, 1, 0, 2, 0, 3, 0, 0, 0, 1, 0, 2, 1, 0, 3, 0 };
 
-        foreach (int beat in beats)
-        {
-            if(numBeats == beat)
-                ShotgunAttack(middleShotgun, 18, 20, 5);
-        }
+        if (beats[beat] == 1)
+            ShotgunAttack(leftShotgun, 60, 6, 5);
+        if (beats[beat] == 2)
+            ShotgunAttack(rightShotgun, 60, 6, 5);
+        if (beats[beat] == 3)
+            ShotgunAttack(middleShotgun, 36, 10, 5);
+    }
+
+    void PhaseSixAttack()
+    {
+        if (numBeats % 4 == 0)
+            BasicAttack(leftPistol, 5);
+        else if (numBeats % 4 == 2)
+            BasicAttack(rightPistol, 5);
+
+        int beat = (numBeats + phaseFiveOffset) % 16;
+        int[] beats = { 0, 1, 0, 2, 0, 3, 0, 0, 0, 1, 0, 2, 1, 0, 3, 0 };
+
+        if (beats[beat] == 1)
+            ShotgunAttack(leftShotgun, 36, 10, 5);
+        if (beats[beat] == 2)
+            ShotgunAttack(rightShotgun, 36, 10, 5);
+        if (beats[beat] == 3)
+            ShotgunAttack(middleShotgun, 18, 20, 5);
     }
 
 

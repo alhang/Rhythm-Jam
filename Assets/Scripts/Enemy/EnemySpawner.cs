@@ -25,7 +25,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
     private void SpawnEnemy() {
         spawnRate -= spawnRate >= 0.3f ? 0.1f : 0;
         Enemy enemy = Random.Range(0, 2) == 0 ? basicEnemy : shotgunEnemy;
-        Instantiate(enemy, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
+        Instantiate(enemy, transform);
     }
 
     public void SetDifficulty(int difficulty)
