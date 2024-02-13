@@ -17,11 +17,21 @@ public class Sword : Weapon
     // Update is called once per frame
     void Update()
     {
-        // Don't follow mouse while in attack motion
-        if(timeElapsed >= attackTime){
-            transform.up = Player.mouseDirection;
-            transform.up = Quaternion.Euler(0, 0, 60) * transform.up;
+        // Player Sword
+        if(target == Target.Enemy)
+        {
+            // Don't follow mouse while in attack motion
+            if(timeElapsed >= attackTime){
+                transform.up = Player.mouseDirection;
+                transform.up = Quaternion.Euler(0, 0, 60) * transform.up;
+            }
         }
+
+        if(target == Target.Player)
+        {
+            
+        }
+        
     }
 
     public override void Attack()
