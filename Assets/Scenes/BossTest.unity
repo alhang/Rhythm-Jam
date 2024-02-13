@@ -768,7 +768,7 @@ MonoBehaviour:
   sampledTimeDisplay: {fileID: 816809375}
   song: {fileID: 8300000, guid: fc126fc5ce5d441498ee59627e3aaf70, type: 3}
   bpm: 95
-  startingTime: 190
+  startingTime: 0
 --- !u!4 &167764985
 Transform:
   m_ObjectHideFlags: 0
@@ -42414,29 +42414,13 @@ MonoBehaviour:
   beatsUntilReset: 16
   numBeats: 0
   phase: 1
-  leftPistol: {fileID: 1827355419}
-  rightPistol: {fileID: 648049446}
-  leftShotgun: {fileID: 722615059}
-  middleShotgun: {fileID: 939461975}
-  rightShotgun: {fileID: 166227255}
+  leftPistol: {fileID: 0}
+  rightPistol: {fileID: 0}
+  leftShotgun: {fileID: 0}
+  middleShotgun: {fileID: 0}
+  rightShotgun: {fileID: 0}
   timeStampIndex: 0
-  timeStamps:
-  - timeStamp: 50
-    phase: 1
-  - timeStamp: 90
-    phase: 2
-  - timeStamp: 101
-    phase: 1
-  - timeStamp: 110
-    phase: 2
-  - timeStamp: 152.5
-    phase: 3
-  - timeStamp: 171
-    phase: 5
-  - timeStamp: 191.5
-    phase: 1
-  - timeStamp: 0
-    phase: 4
+  timeStamps: []
 --- !u!4 &2137934377
 Transform:
   m_ObjectHideFlags: 0
