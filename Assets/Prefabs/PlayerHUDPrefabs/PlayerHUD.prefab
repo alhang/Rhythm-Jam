@@ -688,6 +688,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 1377801344422937438}
   healthRect: {fileID: 668875076692872930}
+  dashImg: {fileID: 8328290298953490521}
+  parryImg: {fileID: 8481167438760233961}
 --- !u!1 &8009622959242104355
 GameObject:
   m_ObjectHideFlags: 0
