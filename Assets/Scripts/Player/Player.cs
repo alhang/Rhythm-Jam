@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
         parryZone = GetComponentInChildren<ParryZone>();
 
         curHealth = maxHealth;
+        playerHUD.UpdateHealthBar();
     }
 
     // Update is called once per frame
@@ -94,15 +95,14 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         curHealth -= damageAmount;
-
-        playerHUD.UpdateHealthBar();
-
         // TODO: On Death action
         if (curHealth <= 0) 
         {
             curHealth = 0;
             Debug.Log("You died");
         }
+
+        playerHUD.UpdateHealthBar();
     }
 
     // Checks if dash is on beat
