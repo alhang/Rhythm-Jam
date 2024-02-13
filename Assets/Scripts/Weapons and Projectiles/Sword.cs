@@ -8,9 +8,12 @@ public class Sword : Weapon
     private float rotationAmount = 120f;
     private float timeElapsed;
     private float attackTime;
+
+    private BoxCollider2D swordCollider;
     // Start is called before the first frame update
     void Start()
     {
+        swordCollider = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -36,6 +39,7 @@ public class Sword : Weapon
         attackTime = 0.2f;
         float initialRotation = rb.rotation;
         float targetRotation = initialRotation - rotationAmount;
+        swordCollider.enabled = true;
 
         while (timeElapsed < attackTime)
         {
@@ -46,6 +50,7 @@ public class Sword : Weapon
             yield return null;
         }
 
+        swordCollider.enabled = false;
         // Ensure the rotation is exactly as intended at the end
         rb.MoveRotation(targetRotation);
     }
