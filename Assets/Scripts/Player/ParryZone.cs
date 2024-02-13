@@ -45,7 +45,7 @@ public class ParryZone : MonoBehaviour
     {
         if (enemyProjectiles.Count > 0)
         {
-            Debug.Log("Parried");
+            //Debug.Log("Parried");
             foreach (Projectile projectile in enemyProjectiles)
             {
                 if (projectile != null)
@@ -73,7 +73,7 @@ public class ParryZone : MonoBehaviour
         {
             if (enemyProjectiles.Count > 0)
             {
-            Debug.Log("Parried");
+            //Debug.Log("Parried");
             foreach (Projectile projectile in enemyProjectiles)
             {
                 if (projectile != null)

@@ -1,6 +1,7 @@
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class Enemy : MonoBehaviour
     private BeatListener beatListener;
     public EnemyProjectile enemyBulletPrefab;
 
+    public static event Action<Enemy> OnEnemyKill;
+
+    private static HashSet<Enemy> allEnemies = new();
+
     void Awake()
     {
         gameObject.AddComponent<BoxCollider2D>();
@@ -19,6 +24,8 @@ public class Enemy : MonoBehaviour
         Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 0;
+
+        allEnemies.Add(this);
     }
 
     // Start is called before the first frame update
@@ -30,17 +37,24 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Destroy object on death
-        if(baseHealth <= 0) {
-            Destroy(enemy);
-        }
-
         Move();
     }
 
     public void TakeDamage(float damageAmount)
     {
         baseHealth -= damageAmount;
+
+        if (baseHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        OnEnemyKill?.Invoke(this);
+        allEnemies.Remove(this);
+        Destroy(enemy);
     }
 
     // Move towards Player
@@ -67,5 +81,14 @@ public class Enemy : MonoBehaviour
 
         Debug.Log("Enemy Atk");
         */
+    }
+
+    public static void KillAll()
+    {
+        List<Enemy> enemyList = allEnemies.ToList();
+        foreach(Enemy enemy in enemyList)
+        {
+            enemy.Die();
+        }
     }
 }
