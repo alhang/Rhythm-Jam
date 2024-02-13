@@ -22,6 +22,10 @@ public class Enemy : MonoBehaviour
 
     private static HashSet<Enemy> allEnemies = new();
 
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField] EnemyMovementSO enemyMovement;
+
     void Awake()
     {
         allEnemies.Add(this);
@@ -30,6 +34,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         curHealth = maxHealth;
     }
 
@@ -45,10 +50,19 @@ public class Enemy : MonoBehaviour
         curHealth -= damageAmount;
         OnTakeDamage?.Invoke();
 
+        StartCoroutine(TakeDamageFeedback());
+
         if (curHealth <= 0)
         {
             Die();
         }
+    }
+
+    IEnumerator TakeDamageFeedback()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white;
     }
 
     public void Die()
@@ -61,10 +75,7 @@ public class Enemy : MonoBehaviour
     // Move towards Player
     void Move()
     {
-        Vector2 enemyPosition = transform.position;
-        Vector3 direction = Vector3.Normalize(Player.position - enemyPosition);
-
-        transform.position += direction * baseSpeed * Time.deltaTime;
+        enemyMovement.Move(this, randomDirection);
     }
 
     // Enemy is stunned and cannot move or attack for fixed time
@@ -89,5 +100,11 @@ public class Enemy : MonoBehaviour
         {
             enemy.Die();
         }
+    }
+
+    Vector3 randomDirection;
+    public void ChangeRandomDirection()
+    {
+        randomDirection = new Vector3(UnityEngine.Random.Range(-1, 1f), UnityEngine.Random.Range(-1, 1f), 0);
     }
 }
