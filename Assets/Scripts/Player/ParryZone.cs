@@ -6,8 +6,9 @@ using Unity.VisualScripting;
 public class ParryZone : MonoBehaviour
 {
     private HashSet<Projectile> enemyProjectiles = new HashSet<Projectile>();
+    private Sword enemySword;
     private Rigidbody2D rb;
-    private float rotationAmount = -60f;
+    private float rotationAmount = 200f;
     private float timeElapsed;
     private float parryTime;
 
@@ -25,6 +26,11 @@ public class ParryZone : MonoBehaviour
         {
             enemyProjectiles.Add(projectile);
         }
+        
+        if (collision.gameObject.transform.parent && collision.gameObject.transform.parent.TryGetComponent(out Sword sword) && sword.target == Target.Player)
+        {
+            enemySword = sword;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -40,7 +46,7 @@ public class ParryZone : MonoBehaviour
         // Don't follow mouse while in parry motion
         if(timeElapsed >= parryTime){
             transform.up = Player.mouseDirection;
-            transform.up = Quaternion.Euler(0, 0, -30) * transform.up;
+            transform.up = Quaternion.Euler(0, 0, rotationAmount/2) * transform.up;
         }
     }
     
@@ -89,6 +95,15 @@ public class ParryZone : MonoBehaviour
                     }
                 }
                 enemyProjectiles.Clear();
+                failedParry = false;
+            }
+
+            if (enemySword != null){
+                Debug.Log("Parried");
+                Enemy enemy = enemySword.GetComponentInParent<Enemy>();
+                StartCoroutine(enemy.Stun());
+
+                enemySword = null;
                 failedParry = false;
             }
 

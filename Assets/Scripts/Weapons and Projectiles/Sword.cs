@@ -44,7 +44,8 @@ public class Sword : Weapon
     public override void Attack()
 	{
 		base.Attack();
-        StartCoroutine(AttackSweep());
+        if(!isDisabled)
+            StartCoroutine(AttackSweep());
     }
 
     public IEnumerator AttackSweep()

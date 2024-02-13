@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
         if (curHealth <= 0) 
         {
             curHealth = 0;
-            Debug.Log("You died");
+            // Debug.Log("You died");
         }
 
         playerHUD.UpdateHealthBar();

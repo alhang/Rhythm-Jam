@@ -11,6 +11,7 @@ public abstract class Weapon : MonoBehaviour
     protected Vector2 direction;
 
     private BeatListener beatListener;
+    public bool isDisabled = false;
 
     private void Start()
     {
