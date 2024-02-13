@@ -60,9 +60,6 @@ public class Enemy : MonoBehaviour
         Vector2 enemyPosition = transform.position;
         Vector3 direction = Vector3.Normalize(Player.position - enemyPosition);
 
-        // Face the player
-        transform.up = direction;
-
         transform.position += direction * baseSpeed * Time.deltaTime;
     }
 
