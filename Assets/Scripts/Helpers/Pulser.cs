@@ -1,10 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class Pulser : MonoBehaviour
 {
-	// Scale percentage
-	public float scaleBy = 1.1f;
+    private int beatInterval = 4;
+    public int beatCount = 0;
+
+    private void OnEnable()
+    {
+        SongManager.OnBeat += OnBeatHandler;
+    }
+
+    private void OnDisable()
+    {
+        SongManager.OnBeat -= OnBeatHandler;
+    }
+
+    public void OnBeatHandler()
+    {
+        beatCount++;
+        if (beatCount >= beatInterval)
+        {
+            beatCount = 0;
+            Pulse();
+        }
+    }
+
+    // Scale percentage
+    public float scaleBy = 1.1f;
 	private Vector2 originalScale;
 	private Vector2 modifiedScale;
 

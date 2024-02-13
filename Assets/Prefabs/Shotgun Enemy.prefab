@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 474403650697916655}
   - component: {fileID: 832032087653674712}
   - component: {fileID: 3438081299999547819}
+  - component: {fileID: 1592532982337703099}
   m_Layer: 0
   m_Name: Shotgun Enemy
   m_TagString: Untagged
@@ -134,6 +135,21 @@ MonoBehaviour:
         m_CallState: 2
   beatInterval: 4
   beatCount: 0
+--- !u!114 &1592532982337703099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5584823426297298966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5f80a7850c54e739475f9a251d170e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatCount: 0
+  scaleBy: 1.1
+  pulseTime: 0.1
 --- !u!1 &6303742918998516944
 GameObject:
   m_ObjectHideFlags: 0

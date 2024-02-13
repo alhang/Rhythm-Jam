@@ -10,6 +10,8 @@ public class SongManager : Singleton<SongManager>
     [SerializeField] AudioClip song;
     public float bpm;
 
+    public float startingTime;
+
     public static float time;
     public static float deltaTime;
     public static float timeSinceLastQuarterBeat;
@@ -26,6 +28,16 @@ public class SongManager : Singleton<SongManager>
     {
         audioSource.Stop();
         audioSource.clip = song;
+
+        if (startingTime == 0)
+            time = 0;
+        else
+        {
+            audioSource.timeSamples = (int) startingTime * audioSource.clip.frequency;
+            time = startingTime;
+        }
+        
+        
         audioSource.Play();
         StartCoroutine(CalculateDeltaTime());
     }
@@ -49,7 +61,7 @@ public class SongManager : Singleton<SongManager>
             timeSinceLastQuarterBeat += deltaTime;
 
             // Display number of samples
-            //sampledTimeDisplay.text = time.ToString();
+            sampledTimeDisplay.text = time.ToString();
 
             // If on quarterBeat invoke event
             if(timeSinceLastQuarterBeat > quarterBeatInterval)
