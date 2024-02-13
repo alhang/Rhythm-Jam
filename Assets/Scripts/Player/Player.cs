@@ -23,10 +23,10 @@ public class Player : MonoBehaviour
 
     public KeyCode dashKey = KeyCode.Space;
     public float dashCooldown = 5;
-    private bool isDashOnCooldown;
+    public static bool isDashOnCooldown;
 
     public float parryCooldown = 5;
-    private bool isParryOnCooldown;
+    public static bool isParryOnCooldown;
 
     private ParryZone parryZone;
 

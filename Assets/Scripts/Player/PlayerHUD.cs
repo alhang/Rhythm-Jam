@@ -7,11 +7,19 @@ using UnityEngine.UIElements;
 
 public class PlayerHUD : MonoBehaviour
 {
+
+    /* Health Bar*/
     public TMPro.TextMeshProUGUI healthText;
     public RectTransform healthRect;
 
     // Cache width of health bar visual
     private float cachedWidth;
+
+
+    /* Cooldowns */
+    public UnityEngine.UI.Image dashImg;
+    public UnityEngine.UI.Image parryImg;
+
     void Start()
     {
         cachedWidth = healthRect.rect.width;
@@ -27,6 +35,10 @@ public class PlayerHUD : MonoBehaviour
         {
             UpdateHealthBar();
         }
+
+        if(dashImg && parryImg){
+            UpdateCooldowns();
+        }
     }
 
     void UpdateHealthBar()
@@ -39,6 +51,27 @@ public class PlayerHUD : MonoBehaviour
         anchorMax.x = newAnchorMaxX;
 
         healthRect.anchorMax = anchorMax;
+    }
+
+    void UpdateCooldowns()
+    {
+        if(Player.isDashOnCooldown)
+        {
+            dashImg.CrossFadeAlpha(0, 0.1f, false);
+        }
+        else
+        {
+            dashImg.CrossFadeAlpha(1, 0.1f, false);
+        }
+
+        if(Player.isParryOnCooldown)
+        {
+            parryImg.CrossFadeAlpha(0, 0.1f, false);
+        }
+        else
+        {
+        parryImg.CrossFadeAlpha(1, 0.1f, false);
+        }
     }
 
 }
