@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void Play()
     {
-
+        SceneManager.LoadScene("Assets/Scenes/GameScene.unity");
     }
 
     public void Options()
@@ -17,6 +17,6 @@ public class MainMenu : MonoBehaviour
 
     public void Quit()
     {
-        
+        Application.Quit();
     }
 }
