@@ -109,12 +109,12 @@ public class Player : MonoBehaviour
     {
         curHealth += healAmount;
 
-        playerHUD.UpdateHealthBar();
-
         if (curHealth <= maxHealth)
         {
             curHealth = maxHealth;
         }
+
+        playerHUD.UpdateHealthBar();
     }
 
     // Checks if dash is on beat
