@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerStats = UnityEditor.AssetDatabase.LoadAssetAtPath<PlayerStatsSO>("Assets/Scriptable Objects/PlayerStats.asset");
         rb = GetComponent<Rigidbody2D>();
         beatListener = GetComponent<BeatListener>();
         parryZone = GetComponentInChildren<ParryZone>();

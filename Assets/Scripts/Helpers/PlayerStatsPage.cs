@@ -11,7 +11,7 @@ public class PlayerStatsPage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerStats = UnityEditor.AssetDatabase.LoadAssetAtPath<PlayerStatsSO>("Assets/Scriptable Objects/PlayerStats.asset");
     }
 
     // Update is called once per frame
