@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 4
   dashSpeed: 4
-  baseDamage: 1
-  baseRegen: 1
+  baseDamage: 5
+  baseRegen: 3
   baseRegenRate: 1
