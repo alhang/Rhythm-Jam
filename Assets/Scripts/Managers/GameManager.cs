@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Tilemaps;
 using System;
+using System.Numerics;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -109,6 +110,10 @@ public class GameManager : Singleton<GameManager>
     public void SpawnPlayerIn()
     {
         player.gameObject.transform.position = startingPos.position;
+
+        // Spawn upgrade
+        if(UpgradeSpawner.Instance)
+            UpgradeSpawner.Instance.SpawnUpgrade(startingPos.position + new UnityEngine.Vector3(0, 10, 0));
 
         Enemy.AggroAllEnemies(false);
         if (EnemySpawner.Instance)
