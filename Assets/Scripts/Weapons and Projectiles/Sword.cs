@@ -10,9 +10,12 @@ public class Sword : Weapon
     private float attackTime;
 
     private BoxCollider2D swordCollider;
+    PlayerStatsSO playerStats;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerStats = UnityEditor.AssetDatabase.LoadAssetAtPath<PlayerStatsSO>("Assets/Scriptable Objects/PlayerStats.asset");
         swordCollider = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -79,7 +82,7 @@ public class Sword : Weapon
 
         if (collision.gameObject.TryGetComponent(out Enemy enemy) && target == Target.Enemy)
         {
-            enemy.TakeDamage(baseDamage);
+            enemy.TakeDamage(baseDamage + playerStats.baseDamage);
         }
         else if (collision.gameObject.TryGetComponent(out Player player) && target == Target.Player)
         {
