@@ -11,6 +11,11 @@ public class PauseMenu : MonoBehaviour
     public PlayerStatsPage playerStatsPageUI;
     private string mainMenuScenePath = "Assets/Scenes/MainMenu.unity";
 
+    void Awake()
+    {
+        pauseMenuUI.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
