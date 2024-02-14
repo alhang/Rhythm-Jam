@@ -42016,7 +42016,7 @@ MonoBehaviour:
   arrows: {fileID: 1878841933}
   difficulty: 1
   bossSceneName: BossTest
-  difficultyToReachBoss: 20
+  difficultyToReachBoss: 1
   enemiesLeft: 0
   hasPlayerExited: 0
   baseTileMap: {fileID: 1254127516}

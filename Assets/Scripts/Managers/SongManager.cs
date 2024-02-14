@@ -38,12 +38,14 @@ public class SongManager : Singleton<SongManager>
         }
         
         
-        audioSource.Play();
+        
         StartCoroutine(CalculateDeltaTime());
     }
 
     private IEnumerator CalculateDeltaTime()
     {
+        audioSource.Play();
+
         quarterBeatInterval = 60 / (bpm * 4);
         timeSinceLastQuarterBeat = 0;
 
