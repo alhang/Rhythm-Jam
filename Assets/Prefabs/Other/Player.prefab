@@ -131,6 +131,7 @@ MonoBehaviour:
   rateOfFire: 8
   projectileSpeed: 25
   target: 1
+  isDisabled: 0
   shotgunBulletPrefab: {fileID: 5698545278142209657, guid: 4f59e74df5a964aa3b4065d08100c815, type: 3}
   spread: 10
   numBullets: 5
@@ -572,6 +573,7 @@ MonoBehaviour:
   rateOfFire: 4
   projectileSpeed: 30
   target: 1
+  isDisabled: 0
   pistolBulletPrefab: {fileID: 5698545278142209657, guid: 4f59e74df5a964aa3b4065d08100c815, type: 3}
 --- !u!1 &3528284017111678289
 GameObject:
@@ -653,6 +655,7 @@ MonoBehaviour:
   rateOfFire: 4
   projectileSpeed: 0
   target: 1
+  isDisabled: 0
 --- !u!50 &7203846555156345487
 Rigidbody2D:
   serializedVersion: 4
@@ -811,6 +814,7 @@ MonoBehaviour:
   rateOfFire: 4
   projectileSpeed: 40
   target: 1
+  isDisabled: 0
   pistolBulletPrefab: {fileID: 5698545278142209657, guid: 4f59e74df5a964aa3b4065d08100c815, type: 3}
 --- !u!1 &7378450657143980582
 GameObject:
@@ -894,14 +898,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6552fb1e6755e4af1a22fdd10a6e4ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 1.5
-  dashSpeed: 5
-  baseDamage: 1
-  baseRegen: 1
   dashKey: 32
   dashCooldown: 2
   parryCooldown: 2
-  playerHUD: {fileID: 0}
+  playerStats: {fileID: 11400000, guid: d78ce119d3c48484ea78bc7b03d9858f, type: 2}
+  playerHUD: {fileID: 2399487344473703087, guid: b20f9a326d27149b8b43fd4574d37df8, type: 3}
 --- !u!50 &2141853487775811646
 Rigidbody2D:
   serializedVersion: 4

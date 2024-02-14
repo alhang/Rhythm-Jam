@@ -10,6 +10,7 @@ public class Upgrade : Drop
     public float addBaseDamage = 1;
     public float addMaxHealth = 10;
     public float addBaseRegen = 1;
+    [SerializeField] PlayerStatsSO playerStats;
 
     public enum UpgradeType
     {
@@ -43,19 +44,19 @@ public class Upgrade : Drop
         switch(upgrade) 
         {
         case UpgradeType.BaseSpeed:
-            player.baseSpeed += addBaseSpeed;
+            playerStats.baseSpeed += addBaseSpeed;
             break;
         case UpgradeType.DashSpeed:
-            player.dashSpeed += addDashSpeed;
+            playerStats.dashSpeed += addDashSpeed;
             break;
         case UpgradeType.BaseDamage:
-            player.baseDamage += addBaseDamage;
+            playerStats.baseDamage += addBaseDamage;
             break;
         case UpgradeType.MaxHealth:
             Player.maxHealth += addMaxHealth;
             break;
         case UpgradeType.BaseRegen:
-            player.baseRegen += addBaseRegen;
+            playerStats.baseRegen += addBaseRegen;
             break;
         default:
             // code block

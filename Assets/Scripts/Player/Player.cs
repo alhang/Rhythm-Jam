@@ -9,15 +9,11 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     private BeatListener beatListener;
-    public float baseSpeed = 2;
-    public float dashSpeed = 3;
-    public float baseDamage = 1;
+
     // baseHealth is the current health TODO: maybe change baseHealth to currentHealth
     public static float curHealth = 10;
     // maxHealth is the maximum health possible
     public static float maxHealth = 10;
-    public float baseRegen = 1;
-    public float baseRegenRate = 1;
     public static Vector2 mouseDirection;
     public static Vector2 position;
 
@@ -29,6 +25,7 @@ public class Player : MonoBehaviour
     public static bool isParryOnCooldown;
 
     private ParryZone parryZone;
+    [SerializeField] PlayerStatsSO playerStats;
 
     [SerializeField] PlayerHUD playerHUD;
 
@@ -92,7 +89,7 @@ public class Player : MonoBehaviour
             horizontal += 1;
         }
 
-        rb.velocity = new Vector2(horizontal * baseSpeed, vertical * baseSpeed);
+        rb.velocity = new Vector2(horizontal * playerStats.baseSpeed, vertical * playerStats.baseSpeed);
     }
 
     public void TakeDamage(float damageAmount)
@@ -143,7 +140,7 @@ public class Player : MonoBehaviour
         float dashTime = 0.1f;
 
         while (timeElapsed < dashTime) {
-            rb.AddForce(Vector3.Normalize(mouseDirection) * baseSpeed * dashSpeed * Time.deltaTime);
+            rb.AddForce(Vector3.Normalize(mouseDirection) * playerStats.dashSpeed * Time.deltaTime);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -166,8 +163,8 @@ public class Player : MonoBehaviour
     {
         while(true)
         {
-            Heal(baseRegen);
-            yield return new WaitForSeconds(baseRegenRate);
+            Heal(playerStats.baseRegen);
+            yield return new WaitForSeconds(playerStats.baseRegenRate);
         }
     }
 }
