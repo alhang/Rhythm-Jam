@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     // maxHealth is the maximum health possible
     public static float maxHealth = 10;
     public float baseRegen = 1;
-
+    public float baseRegenRate = 1;
     public static Vector2 mouseDirection;
     public static Vector2 position;
 
@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
 
         curHealth = maxHealth;
         playerHUD.UpdateHealthBar();
+
+        StartCoroutine(RegenHealth());
     }
 
     // Update is called once per frame
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
         else
             Move();
 
+        
         // Finding the position of the mouse
         SetMouseDirection();
         position = transform.position;
@@ -109,7 +112,7 @@ public class Player : MonoBehaviour
     {
         curHealth += healAmount;
 
-        if (curHealth <= maxHealth)
+        if (curHealth >= maxHealth)
         {
             curHealth = maxHealth;
         }
@@ -155,6 +158,15 @@ public class Player : MonoBehaviour
             playerHUD.UpdateCooldowns();
             SyncedTimer timer = new SyncedTimer(parryCooldown, () => { isParryOnCooldown = false; playerHUD.UpdateCooldowns(); });
             StartCoroutine(timer.Start());
+        }
+    }
+
+    IEnumerator RegenHealth()
+    {
+        while(true)
+        {
+            Heal(baseRegen);
+            yield return new WaitForSeconds(baseRegenRate);
         }
     }
 }
