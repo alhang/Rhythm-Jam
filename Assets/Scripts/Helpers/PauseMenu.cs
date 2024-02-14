@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
+    public PlayerStatsPage playerStatsPageUI;
     private string mainMenuScenePath = "Assets/Scenes/MainMenu.unity";
 
     // Update is called once per frame
@@ -31,6 +32,11 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        if(playerStatsPageUI)
+        {
+            playerStatsPageUI.DisplayStats();
+        }
     }
 
     public void Resume()
