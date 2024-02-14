@@ -22,7 +22,7 @@ public class ParryZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Projectile projectile) && projectile.target == Target.Player)
+        if (collision.gameObject.TryGetComponent(out Projectile projectile) && projectile.target == Target.Player && projectile.isParryable)
         {
             enemyProjectiles.Add(projectile);
         }

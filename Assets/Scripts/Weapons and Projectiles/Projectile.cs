@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public Vector3 velocity { get; private set; }
     private float projectileSpeed;
     public Target target { get; private set; }
+    public bool isParryable = true;
 
     public void Fire(Vector2 angle, Vector2 startingPos, Target target, float projectileSpeed, float damage)
     {

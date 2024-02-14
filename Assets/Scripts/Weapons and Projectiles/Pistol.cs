@@ -5,9 +5,9 @@ public class Pistol : Weapon
 {
 	public Projectile pistolBulletPrefab;
 
-	public override void Attack()
+	public override void AttackHandler()
 	{
-		base.Attack();
+		base.AttackHandler();
 		Instantiate(pistolBulletPrefab).Fire(direction, transform.position, target, projectileSpeed, baseDamage);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Tilemaps;
+using System;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -8,14 +10,25 @@ public class GameManager : Singleton<GameManager>
     public Transform startingPos;
     public Animator roomTransition;
 
-    public int enemiesToKillForRoomClear = 10;
-    public int enemiesKilledInRoom = 0;
-
     public GameObject closedGameArea;
 
     public GameObject arrows;
 
     public int difficulty = 1;
+
+    public string bossSceneName;
+    public int difficultyToReachBoss = 20;
+
+    AsyncSceneLoader asyncSceneLoader;
+
+    public int enemiesLeft;
+
+    public static event Action OnPlayerEnter;
+
+    private void Start()
+    {
+        SpawnPlayerIn();
+    }
 
     public void OnEnable()
     {
@@ -29,35 +42,55 @@ public class GameManager : Singleton<GameManager>
 
     public void EnemyKilled(Enemy enemy)
     {
-        enemiesKilledInRoom++;
-        if (enemiesKilledInRoom >= enemiesToKillForRoomClear)
-            OnRoomClear();
+        if (EnemySpawner.Instance)
+        {
+            enemiesLeft--;
+            if (enemiesLeft == 0)
+                OnRoomClear();
+        }
     }
 
+    private bool hasPlayerEntered = false;
     public void OnPlayerEnterGameArea()
 	{
-        Debug.Log("Player entered");
+        if (hasPlayerEntered)
+            return;
+
+        hasPlayerEntered = true;
         closedGameArea.SetActive(true);
+        Enemy.AggroAllEnemies(true);
+        OnPlayerEnter?.Invoke();
     }
 
     public void OnRoomClear()
     {
-        Debug.Log("Room cleared");
         arrows.SetActive(true);
         closedGameArea.SetActive(false);
+
+        if (difficulty >= difficultyToReachBoss)
+        {
+            Debug.Log("Loading boss");
+            asyncSceneLoader = new AsyncSceneLoader(bossSceneName);
+            StartCoroutine(asyncSceneLoader.Load());
+        }
     }
+
+    public bool hasPlayerExited;
 
     public void OnPlayerExitGameArea(int route)
     {
-        if (route != 1)
-            difficulty++;
-        else
-            difficulty += 2;
-        Debug.Log("Player exited");
+        if (hasPlayerExited)
+            return;
 
-        //EnemySpawner.Instance.SetDifficulty(difficulty);
-        enemiesKilledInRoom = 0;
-        Enemy.KillAll();
+        if (difficulty >= difficultyToReachBoss)
+            asyncSceneLoader.AllowSceneActivation();
+
+        if (route != 1)
+            difficulty += 3;
+        else
+            difficulty += 6;
+
+        hasPlayerExited = true;
 
         StartCoroutine(RoomTransition());
     }
@@ -67,10 +100,25 @@ public class GameManager : Singleton<GameManager>
         playerCamera.SetActive(false);
         roomTransition.SetTrigger("Exit");
         yield return new WaitForSeconds(0.25f);
+
+        SpawnPlayerIn();
+    }
+
+    public Tilemap baseTileMap;
+
+    public void SpawnPlayerIn()
+    {
         player.gameObject.transform.position = startingPos.position;
+
+        Enemy.AggroAllEnemies(false);
+        if (EnemySpawner.Instance)
+            enemiesLeft = EnemySpawner.Instance.PrepopulateRoom(difficulty);
+
         playerCamera.SetActive(true);
         arrows.SetActive(false);
         roomTransition.SetTrigger("Enter");
+        hasPlayerExited = false;
+        hasPlayerEntered = false;
     }
 }
 

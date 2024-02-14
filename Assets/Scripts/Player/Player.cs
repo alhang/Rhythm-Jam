@@ -124,13 +124,14 @@ public class Player : MonoBehaviour
     public void TryDash()
     {
         StartCoroutine(Dash());
-        Debug.Log(beatListener.beatCount);
-        if ( !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.5f) || beatListener.beatCount == 3))
+        
+        if ( !(beatListener.beatCount == 0 || beatListener.beatCount == 3))
         {
+            Debug.Log(beatListener.beatCount);
             //Debug.Log("Dash is on cooldown");
             isDashOnCooldown = true;
             playerHUD.UpdateCooldowns();
-            SyncedTimer timer = new SyncedTimer(dashCooldown, () => { isDashOnCooldown = false; playerHUD.UpdateCooldowns(); });
+            Timer timer = new Timer(dashCooldown, () => { isDashOnCooldown = false; playerHUD.UpdateCooldowns(); });
             StartCoroutine(timer.Start());
         }
     }
@@ -151,12 +152,12 @@ public class Player : MonoBehaviour
     public void TryParry()
     {
         StartCoroutine(parryZone.ParrySweep());
-        if (ParryZone.failedParry || !((beatListener.beatCount == 0 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.5f) || beatListener.beatCount == 3 ))
+        if (ParryZone.failedParry || !(beatListener.beatCount == 0 || beatListener.beatCount == 3))
         {
             //Debug.Log("Parry is on cooldown");
             isParryOnCooldown = true;
             playerHUD.UpdateCooldowns();
-            SyncedTimer timer = new SyncedTimer(parryCooldown, () => { isParryOnCooldown = false; playerHUD.UpdateCooldowns(); });
+            Timer timer = new Timer(parryCooldown, () => { isParryOnCooldown = false; playerHUD.UpdateCooldowns(); });
             StartCoroutine(timer.Start());
         }
     }

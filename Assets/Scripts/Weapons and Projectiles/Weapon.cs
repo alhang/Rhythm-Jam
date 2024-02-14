@@ -13,6 +13,8 @@ public abstract class Weapon : MonoBehaviour
     private BeatListener beatListener;
     public bool isDisabled = false;
 
+    public static bool canFire = false;
+
     private void Start()
     {
         beatListener = GetComponent<BeatListener>();
@@ -26,13 +28,20 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Attack()
     {
+        if (isDisabled || !canFire)
+            return;
+
         if (target == Target.Enemy)
             direction = Player.mouseDirection;
         else
         {
             direction = Vector3.Normalize(Player.position - (Vector2)transform.position);
         }
+
+        AttackHandler();
     }
+
+    public virtual void AttackHandler() { }
 }
 
 public enum Target

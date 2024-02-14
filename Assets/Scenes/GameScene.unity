@@ -2021,6 +2021,7 @@ MonoBehaviour:
   dashSpeed: 5
   baseDamage: 1
   baseRegen: 1
+  baseRegenRate: 1
   dashKey: 32
   dashCooldown: 2
   parryCooldown: 2
@@ -3049,6 +3050,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946196655}
   m_CullTransparentMesh: 1
+--- !u!1 &977831839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977831840}
+  m_Layer: 0
+  m_Name: SpawnArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &977831840
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977831839}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2016214917}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.3326, y: -0.097}
+  m_SizeDelta: {x: 27.2879, y: 20.6352}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &987784987
 GameObject:
   m_ObjectHideFlags: 0
@@ -3136,10 +3172,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 987784987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c7e8bf60ef84c58a8e7e8798b9c904, type: 3}
+  m_Script: {fileID: 11500000, guid: 71ad44c8adb574fc7a6c3aa467342d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTriggerExit:
+  onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2145789833}
@@ -22422,10 +22458,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1513776279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c7e8bf60ef84c58a8e7e8798b9c904, type: 3}
+  m_Script: {fileID: 11500000, guid: 71ad44c8adb574fc7a6c3aa467342d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTriggerExit:
+  onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2145789833}
@@ -41135,10 +41171,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1947859207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c7e8bf60ef84c58a8e7e8798b9c904, type: 3}
+  m_Script: {fileID: 11500000, guid: 71ad44c8adb574fc7a6c3aa467342d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTriggerExit:
+  onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2145789833}
@@ -41543,10 +41579,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 3798732946511098366, guid: 268d048006a864528911757df6f32018, type: 3}
-  - {fileID: 6549849502405705974, guid: 56deab746875a4219bdfa00283c876b6, type: 3}
-  - {fileID: 832032087653674712, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-  spawnRate: 4
+  - prefab: {fileID: 3798732946511098366, guid: 268d048006a864528911757df6f32018, type: 3}
+    difficultyRating: 1
+  - prefab: {fileID: 6549849502405705974, guid: 56deab746875a4219bdfa00283c876b6, type: 3}
+    difficultyRating: 2
+  - prefab: {fileID: 832032087653674712, guid: 3f7d08e7a6f2f4efda3784686013cd88, type: 3}
+    difficultyRating: 3
+  - prefab: {fileID: 6549849502405705974, guid: 8c6fcc4255d74412aab521429563ef04, type: 3}
+    difficultyRating: 4
+  - prefab: {fileID: 832032087653674712, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
+    difficultyRating: 5
+  - prefab: {fileID: 6549849502405705974, guid: b038fa020045241ba94409b2a532a1f9, type: 3}
+    difficultyRating: 6
+  - prefab: {fileID: 832032087653674712, guid: 445b77b7640ab451abd675377d8f2224, type: 3}
+    difficultyRating: 7
+  difficulty: 1
+  spawnArea: {fileID: 977831840}
+  maxX: 0
+  minX: 0
+  maxY: 0
+  minY: 0
 --- !u!4 &2016214917
 Transform:
   m_ObjectHideFlags: 0
@@ -41559,7 +41611,8 @@ Transform:
   m_LocalPosition: {x: 0.039892554, y: -6.39624, z: -0.013273887}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 977831840}
   m_Father: {fileID: 1132678744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2027580299
@@ -41907,11 +41960,14 @@ MonoBehaviour:
   playerCamera: {fileID: 264649929}
   startingPos: {fileID: 2145789832}
   roomTransition: {fileID: 1105276960}
-  enemiesToKillForRoomClear: 10
-  enemiesKilledInRoom: 0
   closedGameArea: {fileID: 1513875085}
   arrows: {fileID: 1878841933}
   difficulty: 1
+  bossSceneName: BossTest
+  difficultyToReachBoss: 20
+  enemiesLeft: 0
+  hasPlayerExited: 0
+  baseTileMap: {fileID: 1254127516}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

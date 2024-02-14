@@ -1,35 +1,66 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : Singleton<EnemySpawner>
 {
-    public Enemy[] enemyPrefabs;
-    public float spawnRate = 4;
-    private float timer = 0;
+    public List<EnemySpawnrate> enemyPrefabs;
 
-    // Update is called once per frame
-    void Update()
+    public float difficulty;
+
+    public RectTransform spawnArea;
+    public float maxX, minX, maxY, minY;
+
+    private void Start()
     {
-        if(timer < spawnRate){
-            timer += Time.deltaTime;
+        maxX = spawnArea.rect.xMax;
+        minX = spawnArea.rect.xMin;
+        maxY = spawnArea.rect.yMax;
+        minY = spawnArea.rect.yMin;
+    }
+
+    public int PrepopulateRoom(int difficulty)
+    {
+        int enemiesSpawned = 0;
+
+        this.difficulty = difficulty;
+        List<EnemySpawnrate> enemySpawnrates = new List<EnemySpawnrate>(enemyPrefabs);
+        while(difficulty > 0)
+        {
+            int randomIndex = Random.Range(0, enemySpawnrates.Count);
+            EnemySpawnrate randomEnemy = enemySpawnrates[randomIndex];
+            
+            if(randomEnemy.difficultyRating > difficulty)
+            {
+                enemySpawnrates.RemoveAt(randomIndex);
+            }
+            else
+            {
+                difficulty -= randomEnemy.difficultyRating;
+                SpawnEnemy(randomEnemy.prefab);
+                enemiesSpawned++;
+            }
         }
-        else{
-            timer = 0;
-            SpawnEnemy();
-        }
+        return enemiesSpawned;
     }
 
     // TODO: Currently placeholder spawn position
-    private void SpawnEnemy() {
-        spawnRate -= spawnRate >= 0.3f ? 0.1f : 0;
-        Enemy enemy = enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
-        Instantiate(enemy, transform);
+    private void SpawnEnemy(Enemy prefab) {
+
+        Instantiate(prefab, GetRandomSpawnPos(), Quaternion.identity, transform);
     }
 
-    public void SetDifficulty(int difficulty)
+    private Vector2 GetRandomSpawnPos()
     {
-        spawnRate = 4 / (float)difficulty;
+        float randX = Random.Range(minX, maxX);
+        float randY = Random.Range(minY, maxY);
+        return new Vector2(randX, randY);
     }
+}
+
+[System.Serializable]
+public class EnemySpawnrate
+{
+    public Enemy prefab;
+    public int difficultyRating;
 }

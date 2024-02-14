@@ -21,27 +21,33 @@ public class Enemy : MonoBehaviour
     public event Action OnTakeDamage;
 
     private static HashSet<Enemy> allEnemies = new();
+    public static bool roomIsClear => allEnemies.Count == 0;
 
     private SpriteRenderer spriteRenderer;
+    private Color startingColor;
+
+    public static bool isAggro;
 
     [SerializeField] EnemyMovementSO enemyMovement;
+    [SerializeField] protected Weapon weapon;
 
     void Awake()
     {
         allEnemies.Add(this);
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (!spriteRenderer)
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         curHealth = maxHealth;
+        startingColor = spriteRenderer.color;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isStunned)
+        if(!isStunned && isAggro)
             Move();
     }
 
@@ -62,7 +68,7 @@ public class Enemy : MonoBehaviour
     {
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = startingColor;
     }
 
     public void Die()
@@ -75,14 +81,14 @@ public class Enemy : MonoBehaviour
     // Move towards Player
     void Move()
     {
-        enemyMovement.Move(this, randomDirection);
+        if(enemyMovement)
+            enemyMovement.Move(this, randomDirection);
     }
 
     // Enemy is stunned and cannot move or attack for fixed time
     public IEnumerator Stun()
     {
         isStunned = true;
-        Weapon weapon = GetComponentInChildren<Weapon>();
         if(weapon){
             weapon.isDisabled = true;
         }
@@ -100,6 +106,12 @@ public class Enemy : MonoBehaviour
         {
             enemy.Die();
         }
+    }
+
+    public static void AggroAllEnemies(bool state)
+    {
+        Weapon.canFire = state;
+        isAggro = state;
     }
 
     Vector3 randomDirection;

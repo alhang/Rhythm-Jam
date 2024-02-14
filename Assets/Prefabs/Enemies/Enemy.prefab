@@ -104,6 +104,9 @@ MonoBehaviour:
   baseDamage: 1
   maxHealth: 1
   baseRegen: 1
+  stunDuration: 2
+  enemyMovement: {fileID: 0}
+  weapon: {fileID: 0}
 --- !u!114 &5195472983474312813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2270116827618397872}
         m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

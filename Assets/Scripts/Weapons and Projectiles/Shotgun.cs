@@ -7,9 +7,9 @@ public class Shotgun : Weapon
     public float spread;
     public float numBullets;
 
-    public override void Attack()
+    public override void AttackHandler()
     {
-        base.Attack();
+        base.AttackHandler();
         for (int i = 0; i < numBullets; i++)
         {
             float offset = (i - (numBullets / 2)) * spread;

@@ -25,19 +25,57 @@ public class FirstBoss : Enemy
 
     private bool hasBattleEnded = false;
 
-    private void Update()
+    private void OnEnable()
     {
-        if (timeStampIndex < timeStamps.Count && SongManager.time >= curTimeStamp.timeStamp) {
-            timeStampIndex++;
-            phase = curTimeStamp.phase;
-        }
-        float timeLeft = maxTimer - SongManager.time;
-        timeLeft = timeLeft < 0.1f ? 0 : timeLeft;
-        timer.text = timeLeft.ToString("0.00");
-        if (timeLeft == 0 && !hasBattleEnded)
+        GameManager.OnPlayerEnter += OnPlayerEnter;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnPlayerEnter -= OnPlayerEnter;
+    }
+
+    private void OnPlayerEnter()
+    {
+        StartCoroutine(FadeToRed());
+        StartCoroutine(Battle());
+    }
+
+    private IEnumerator FadeToRed()
+    {
+        float elapsedTime = 0;
+        float maxTime = 2;
+        while (elapsedTime < maxTime)
         {
-            EndBattle();
-            hasBattleEnded = true;
+            elapsedTime += Time.deltaTime;
+            float percentDone = elapsedTime / maxTime;
+            GameManager.Instance.baseTileMap.color = Color.Lerp(Color.white, Color.red, percentDone);
+            yield return null;
+        }
+        GameManager.Instance.baseTileMap.color = Color.red;
+    }
+
+    private IEnumerator Battle()
+    {
+        SongManager.Instance.Play();
+        while (!hasBattleEnded)
+        {
+            if (timeStampIndex < timeStamps.Count && SongManager.time >= curTimeStamp.timeStamp)
+            {
+                timeStampIndex++;
+                phase = curTimeStamp.phase;
+            }
+
+            float timeLeft = maxTimer - SongManager.time;
+            timeLeft = timeLeft < 0.1f ? 0 : timeLeft;
+            timer.text = timeLeft.ToString("0.00");
+
+            if (timeLeft == 0 && !hasBattleEnded)
+            {
+                EndBattle();
+                hasBattleEnded = true;
+            }
+            yield return null;
         }
     }
 
@@ -79,25 +117,27 @@ public class FirstBoss : Enemy
 
     }
 
+    public int projectileSpeed = 10;
+
     void PhaseOneAttack()
     {
         if (numBeats % 2 == 0)
-            BasicAttack(leftPistol, 5);
+            BasicAttack(leftPistol, projectileSpeed);
         else
-            BasicAttack(rightPistol, 5);
+            BasicAttack(rightPistol, projectileSpeed);
     }
 
     void PhaseTwoAttack()
     {
         if (numBeats % 8 < 4)
         {
-            BasicAttack(leftPistol, 5);
-            BasicAttack(rightPistol, 5);
+            BasicAttack(leftPistol, projectileSpeed);
+            BasicAttack(rightPistol, projectileSpeed);
         }
         if ((numBeats - 4) % 8 == 0)
         {
-            ShotgunAttack(leftShotgun, 30, 6, 5);
-            ShotgunAttack(rightShotgun, 30, 6, 5);
+            ShotgunAttack(leftShotgun, 30, 6, projectileSpeed);
+            ShotgunAttack(rightShotgun, 30, 6, projectileSpeed);
         }
     }
 
@@ -105,12 +145,12 @@ public class FirstBoss : Enemy
     {
         if (numBeats % 4 == 0)
         {
-            ShotgunAttack(leftShotgun, 20, 4, 5);
-            ShotgunAttack(rightShotgun, 20, 4, 5);
+            ShotgunAttack(leftShotgun, 20, 4, projectileSpeed);
+            ShotgunAttack(rightShotgun, 20, 4, projectileSpeed);
         }
 
         if (numBeats % 8 == 0)
-            ShotgunAttack(middleShotgun, 20, 18, 5);
+            ShotgunAttack(middleShotgun, 20, 18, projectileSpeed);
     }
 
     void PhaseFourAttack()
@@ -118,11 +158,11 @@ public class FirstBoss : Enemy
         int beats = numBeats - 4;
         if (beats % 4 == 0)
         {
-            ShotgunAttack(leftShotgun, 45, 8, 5);
-            ShotgunAttack(rightShotgun, 45, 8, 5);
+            ShotgunAttack(leftShotgun, 45, 8, projectileSpeed);
+            ShotgunAttack(rightShotgun, 45, 8, projectileSpeed);
         }
         if (beats % 8 == 0)
-            ShotgunAttack(middleShotgun, 20, 18, 5);
+            ShotgunAttack(middleShotgun, 20, 18, projectileSpeed);
     }
 
     public int phaseFiveOffset = 0;
@@ -132,29 +172,29 @@ public class FirstBoss : Enemy
         int[] beats = { 0, 1, 0, 2, 0, 3, 0, 0, 0, 1, 0, 2, 1, 0, 3, 0 };
 
         if (beats[beat] == 1)
-            ShotgunAttack(leftShotgun, 60, 6, 5);
+            ShotgunAttack(leftShotgun, 60, 6, projectileSpeed);
         if (beats[beat] == 2)
-            ShotgunAttack(rightShotgun, 60, 6, 5);
+            ShotgunAttack(rightShotgun, 60, 6, projectileSpeed);
         if (beats[beat] == 3)
-            ShotgunAttack(middleShotgun, 36, 10, 5);
+            ShotgunAttack(middleShotgun, 36, 10, projectileSpeed);
     }
 
     void PhaseSixAttack()
     {
         if (numBeats % 4 == 0)
-            BasicAttack(leftPistol, 5);
+            BasicAttack(leftPistol, projectileSpeed);
         else if (numBeats % 4 == 2)
-            BasicAttack(rightPistol, 5);
+            BasicAttack(rightPistol, projectileSpeed);
 
         int beat = (numBeats + phaseFiveOffset) % 16;
         int[] beats = { 0, 1, 0, 2, 0, 3, 0, 0, 0, 1, 0, 2, 1, 0, 3, 0 };
 
         if (beats[beat] == 1)
-            ShotgunAttack(leftShotgun, 36, 10, 5);
+            ShotgunAttack(leftShotgun, 36, 10, projectileSpeed);
         if (beats[beat] == 2)
-            ShotgunAttack(rightShotgun, 36, 10, 5);
+            ShotgunAttack(rightShotgun, 36, 10, projectileSpeed);
         if (beats[beat] == 3)
-            ShotgunAttack(middleShotgun, 20, 18, 5);
+            ShotgunAttack(middleShotgun, 20, 18, projectileSpeed);
     }
 
 

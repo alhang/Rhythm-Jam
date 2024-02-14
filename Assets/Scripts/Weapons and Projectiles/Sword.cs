@@ -41,9 +41,9 @@ public class Sword : Weapon
         
     }
 
-    public override void Attack()
+    public override void AttackHandler()
 	{
-		base.Attack();
+		base.AttackHandler();
         if(!isDisabled)
             StartCoroutine(AttackSweep());
     }

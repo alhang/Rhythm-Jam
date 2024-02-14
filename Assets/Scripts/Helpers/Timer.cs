@@ -16,7 +16,7 @@ public class Timer
     public IEnumerator Start()
     {
         float waitUntil = Time.time + time;
-        yield return new WaitUntil(() => SongManager.time >= waitUntil);
+        yield return new WaitUntil(() => Time.time >= waitUntil);
         callback.Invoke();
     }
 }
