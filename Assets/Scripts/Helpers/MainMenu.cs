@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] PlayerStatsSO playerStats;
+
+    private string gameScenePath = "Assets/Scenes/GameScene.unity";
+
     public void Play()
     {
-        SceneManager.LoadScene("Assets/Scenes/GameScene.unity");
+        playerStats.ResetStats();
+        SceneManager.LoadScene(gameScenePath);
     }
 
     public void Options()
