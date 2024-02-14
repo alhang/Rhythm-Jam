@@ -211,6 +211,7 @@ MonoBehaviour:
   projectileSpeed: 0
   target: 0
   isDisabled: 0
+  playerStats: {fileID: 0}
 --- !u!50 &7410112304284633256
 Rigidbody2D:
   serializedVersion: 4

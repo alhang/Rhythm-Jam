@@ -10,12 +10,11 @@ public class Sword : Weapon
     private float attackTime;
 
     private BoxCollider2D swordCollider;
-    PlayerStatsSO playerStats;
+    [SerializeField] PlayerStatsSO playerStats;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerStats = Resources.Load<PlayerStatsSO>("Assets/Scriptable Objects/PlayerStats.asset");
         swordCollider = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }

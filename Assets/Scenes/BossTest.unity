@@ -41333,6 +41333,7 @@ MonoBehaviour:
   projectileSpeed: 0
   target: 1
   isDisabled: 0
+  playerStats: {fileID: 11400000, guid: d78ce119d3c48484ea78bc7b03d9858f, type: 2}
 --- !u!4 &1246751837819410659
 Transform:
   m_ObjectHideFlags: 0

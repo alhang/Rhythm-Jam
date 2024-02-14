@@ -24,7 +24,7 @@ public class Upgrade : Drop
     // Start is called before the first frame update
     void Start()
     {
-        playerStats = Resources.Load<PlayerStatsSO>("Assets/Scriptable Objects/PlayerStats.asset");
+        
     }
 
     // Update is called once per frame
