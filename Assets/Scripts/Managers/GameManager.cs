@@ -99,8 +99,10 @@ public class GameManager : Singleton<GameManager>
     public IEnumerator RoomTransition()
     {
         playerCamera.SetActive(false);
+        //roomTransition.ResetTrigger("Enter");
         roomTransition.SetTrigger("Exit");
-        yield return new WaitForSeconds(0.3f);
+
+        yield return new WaitForSeconds(0.25f);
 
         SpawnPlayerIn();
     }
@@ -109,6 +111,7 @@ public class GameManager : Singleton<GameManager>
 
     public void SpawnPlayerIn()
     {
+        //roomTransition.ResetTrigger("Exit");
         player.gameObject.transform.position = startingPos.position;
 
         // Spawn upgrade

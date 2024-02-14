@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     public event Action OnTakeDamage;
 
-    private static HashSet<Enemy> allEnemies = new();
+    protected static HashSet<Enemy> allEnemies = new();
     public static bool roomIsClear => allEnemies.Count == 0;
 
     private SpriteRenderer spriteRenderer;
@@ -71,8 +71,9 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = startingColor;
     }
 
-    public void Die()
+    public virtual void Die()
     {
+        Debug.Log("Old die");
         OnEnemyKill?.Invoke(this);
         allEnemies.Remove(this);
         Destroy(gameObject);

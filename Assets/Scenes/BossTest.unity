@@ -41802,6 +41802,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5202835483359106949, guid: e3d174c1b7ccd49c5bf038cec213c777, type: 3}
     - target: {fileID: 7230380438295375939, guid: e81de66eb14c244a297e2ca114ff1ede, type: 3}
+      propertyPath: projectileSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7230380438295375939, guid: e81de66eb14c244a297e2ca114ff1ede, type: 3}
       propertyPath: totemSpawnPositions.Array.size
       value: 4
       objectReference: {fileID: 0}
