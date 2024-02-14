@@ -74,19 +74,19 @@ public class Player : MonoBehaviour
         // Player Movement
         if (Input.GetKey(KeyCode.W))
         {
-            vertical += baseSpeed;
+            vertical += 1;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            horizontal -= baseSpeed;
+            horizontal -= 1;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            vertical -= baseSpeed;
+            vertical -= 1;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            horizontal += baseSpeed;
+            horizontal += 1;
         }
 
         rb.velocity = new Vector2(horizontal * baseSpeed, vertical * baseSpeed);

@@ -38,6 +38,7 @@ public class Upgrade : Drop
 
         // Ranodom upgrade
         UpgradeType upgrade = (UpgradeType)UnityEngine.Random.Range(0, Enum.GetNames(typeof(UpgradeType)).Length);
+        Debug.Log("Upgrade: " + upgrade.ToString());
 
         switch(upgrade) 
         {

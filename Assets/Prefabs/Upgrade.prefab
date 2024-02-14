@@ -102,9 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b586bf52f55164472a0feae88bf169e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addBaseSpeed: 2
-  addDashSpeed: 3
-  addBaseDamage: 1
+  addBaseSpeed: 20
+  addDashSpeed: 5
+  addBaseDamage: 2
   addMaxHealth: 10
   addBaseRegen: 1
 --- !u!61 &6951186438154018461
