@@ -22,8 +22,18 @@ public class FirstBoss : Enemy
 
     [SerializeField] private TextMeshProUGUI timer;
     public float maxTimer = 253.022f;
+    private float timeLeft = 0;
 
     private bool hasBattleEnded = false;
+
+    [SerializeField] Totem totemPrefab;
+    public List<Transform> totemSpawnPositions;
+    public static List<Transform> avaliableSpawnPositions;
+
+    private void Start()
+    {
+        avaliableSpawnPositions = new List<Transform>(totemSpawnPositions);
+    }
 
     private void OnEnable()
     {
@@ -55,9 +65,34 @@ public class FirstBoss : Enemy
         GameManager.Instance.baseTileMap.color = Color.red;
     }
 
+    private IEnumerator TotemSpawner()
+    {
+        yield return new WaitForSeconds(5);
+        SpawnTotem();
+        yield return new WaitForSeconds(5);
+        while (!hasBattleEnded)
+        {
+            yield return new WaitForSeconds(1);
+            yield return new WaitUntil(() => avaliableSpawnPositions.Count > 0);
+            float val = Mathf.Lerp(0.05f, 0.1f, SongManager.time / maxTimer);
+            float rng = Random.Range(0, 1f);
+            if (rng < val)
+                SpawnTotem();
+        }
+    }
+
+    public void SpawnTotem()
+    {
+        int randomIndex = Random.Range(0, avaliableSpawnPositions.Count);
+        Transform randomPosTransf = avaliableSpawnPositions[randomIndex]; 
+        Instantiate(totemPrefab, randomPosTransf.position, Quaternion.identity, randomPosTransf);
+        avaliableSpawnPositions.RemoveAt(randomIndex);
+    }
+
     private IEnumerator Battle()
     {
         SongManager.Instance.Play();
+        StartCoroutine(TotemSpawner());
         while (!hasBattleEnded)
         {
             if (timeStampIndex < timeStamps.Count && SongManager.time >= curTimeStamp.timeStamp)
@@ -66,7 +101,7 @@ public class FirstBoss : Enemy
                 phase = curTimeStamp.phase;
             }
 
-            float timeLeft = maxTimer - SongManager.time;
+            timeLeft = maxTimer - SongManager.time;
             timeLeft = timeLeft < 0.1f ? 0 : timeLeft;
             timer.text = timeLeft.ToString("0.00");
 

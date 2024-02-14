@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class Totem : Enemy
 {
     [SerializeField] float maxTime;
     [SerializeField] Image countDownFill;
     float elapsedTime = 0;
+    public Transform parent { get; private set; }
+
+    public GameObject healthPot;
 
     private void Start()
     {
+        parent = transform.parent;
         StartCoroutine(CountDown());
     }
 
@@ -28,8 +33,16 @@ public class Totem : Enemy
 
     public void Explode()
     {
+        FirstBoss.avaliableSpawnPositions.Add(parent);
         weapon.Attack();
         Destroy(gameObject);
+    }
+
+    public new void Die()
+    {
+        FirstBoss.avaliableSpawnPositions.Add(parent);
+        Instantiate(healthPot, transform.position, Quaternion.identity);
+        base.Die();
     }
 }
 
