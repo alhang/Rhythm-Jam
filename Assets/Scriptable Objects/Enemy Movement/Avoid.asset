@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b94f03905a54fcc812bb24255d25a6, type: 3}
   m_Name: Avoid
   m_EditorClassIdentifier: 
-  followBias: -1
-  randomBias: 0
+  followBias: -0.05
+  randomBias: 0.5

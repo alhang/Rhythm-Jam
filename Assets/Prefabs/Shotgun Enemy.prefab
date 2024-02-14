@@ -107,6 +107,8 @@ MonoBehaviour:
   baseDamage: 1
   maxHealth: 3
   baseRegen: 1
+  stunDuration: 2
+  enemyMovement: {fileID: 11400000, guid: 0742ead9aa1c64092a747bcbe138d869, type: 2}
 --- !u!114 &3438081299999547819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +126,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 832032087653674712}
         m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: ChangeRandomDirection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -354,6 +356,7 @@ MonoBehaviour:
   rateOfFire: 8
   projectileSpeed: 5
   target: 0
+  isDisabled: 0
   shotgunBulletPrefab: {fileID: 7766842883304330625, guid: ba6418800ca6048be9ebc0997bf00dba, type: 3}
   spread: 10
   numBullets: 5

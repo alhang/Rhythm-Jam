@@ -14,7 +14,7 @@ public class EnemyMovementSO : ScriptableObject
         Vector3 followDirection = followBias * Vector3.Normalize(Player.position - enemyPosition);
         randomDirection = randomBias * Vector3.Normalize(randomDirection);
 
-        enemy.transform.position += enemy.baseSpeed * Time.deltaTime * (followDirection + randomDirection);
+        enemy.transform.position += enemy.baseSpeed * Time.deltaTime * Vector3.Normalize(followDirection + randomDirection);
     }
 }
 
