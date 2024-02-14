@@ -15,7 +15,7 @@ public class Sword : Weapon
     // Start is called before the first frame update
     void Start()
     {
-        playerStats = UnityEditor.AssetDatabase.LoadAssetAtPath<PlayerStatsSO>("Assets/Scriptable Objects/PlayerStats.asset");
+        playerStats = Resources.Load<PlayerStatsSO>("Assets/Scriptable Objects/PlayerStats.asset");
         swordCollider = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
