@@ -121,12 +121,17 @@ public class Player : MonoBehaviour
         playerHUD.UpdateHealthBar();
     }
 
+    public bool IsOnBeat()
+    {
+        return beatListener.beatCount == 0 || (beatListener.beatCount == 1 && SongManager.timeSinceLastQuarterBeat < SongManager.quarterBeatInterval * 0.5f) || (beatListener.beatCount == 3 && SongManager.timeSinceLastQuarterBeat > SongManager.quarterBeatInterval * 0.5f);
+    }
+
     // Checks if dash is on beat
     public void TryDash()
     {
         StartCoroutine(Dash());
         
-        if ( !(beatListener.beatCount == 0 || beatListener.beatCount == 1))
+        if ( !IsOnBeat() )
         {
             Debug.Log(beatListener.beatCount);
             //Debug.Log("Dash is on cooldown");
@@ -153,7 +158,7 @@ public class Player : MonoBehaviour
     public void TryParry()
     {
         StartCoroutine(parryZone.ParrySweep());
-        if (ParryZone.failedParry || !(beatListener.beatCount == 0 || beatListener.beatCount == 1))
+        if (ParryZone.failedParry || !IsOnBeat())
         {
             //Debug.Log("Parry is on cooldown");
             isParryOnCooldown = true;
