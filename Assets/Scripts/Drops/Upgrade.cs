@@ -35,8 +35,6 @@ public class Upgrade : Drop
 
     protected override void Pickup(Player player)
     {
-        Debug.Log("Upgrade");
-
         // Ranodom upgrade
         UpgradeType upgrade = (UpgradeType)UnityEngine.Random.Range(0, Enum.GetNames(typeof(UpgradeType)).Length);
         Debug.Log("Upgrade: " + upgrade.ToString());
@@ -53,7 +51,7 @@ public class Upgrade : Drop
             playerStats.baseDamage += addBaseDamage;
             break;
         case UpgradeType.MaxHealth:
-            Player.maxHealth += addMaxHealth;
+            Player.AddMaxHealth(addMaxHealth);
             break;
         case UpgradeType.BaseRegen:
             playerStats.baseRegen += addBaseRegen;
