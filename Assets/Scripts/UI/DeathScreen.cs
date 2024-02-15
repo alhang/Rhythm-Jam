@@ -5,13 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
-    public GameObject deathScreenUI;
     private string mainMenuScenePath = "Assets/Scenes/MainMenu.unity";
-
-    void Awake()
-    {
-        deathScreenUI.SetActive(false);
-    }
+    private string deathScenePath = "Assets/Scenes/DeathScene.unity";
 
     // Start is called before the first frame update
     void Start()
@@ -27,14 +22,11 @@ public class DeathScreen : MonoBehaviour
 
     public void ShowDeathScreen()
     {
-        deathScreenUI.SetActive(true);
-        Time.timeScale = 0f;
+        SceneManager.LoadScene(deathScenePath);
     }
 
     public void LoadMenu()
     {
-        deathScreenUI.SetActive(false);
-        Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenuScenePath);
     }
 

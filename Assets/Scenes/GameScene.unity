@@ -41993,7 +41993,8 @@ PrefabInstance:
       value: DeathScreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 94737152121965925, guid: d918e87955d1d4270be972540dcaf970, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d918e87955d1d4270be972540dcaf970, type: 3}
