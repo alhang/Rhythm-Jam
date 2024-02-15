@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] PlayerStatsSO playerStats;
 
-    [SerializeField] static PlayerHUD playerHUD;
+    [SerializeField] PlayerHUD playerHUD;
 
     // Start is called before the first frame update
     void Start()
@@ -115,12 +115,6 @@ public class Player : MonoBehaviour
             Debug.Log("You died");
         }
 
-        playerHUD.UpdateHealthBar();
-    }
-
-    public static void AddMaxHealth(float health)
-    {
-        maxHealth += health;
         playerHUD.UpdateHealthBar();
     }
 

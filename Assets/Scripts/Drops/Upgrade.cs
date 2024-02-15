@@ -51,7 +51,7 @@ public class Upgrade : Drop
             playerStats.baseDamage += addBaseDamage;
             break;
         case UpgradeType.MaxHealth:
-            Player.AddMaxHealth(addMaxHealth);
+            Player.maxHealth += addMaxHealth;
             break;
         case UpgradeType.BaseRegen:
             playerStats.baseRegen += addBaseRegen;

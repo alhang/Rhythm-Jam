@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 2
-  baseDamage: 3
+  baseDamage: 5
   maxHealth: 10
   baseRegen: 1
   stunDuration: 2
