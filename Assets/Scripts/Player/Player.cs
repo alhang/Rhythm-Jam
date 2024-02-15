@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     public static bool isParryOnCooldown;
 
     private ParryZone parryZone;
+    public static bool isDead = false;
     [SerializeField] PlayerStatsSO playerStats;
 
     [SerializeField] PlayerHUD playerHUD;
@@ -91,13 +93,17 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        if(isDead)
+            return;
+
         curHealth -= damageAmount;
         // TODO: On Death action
         if (curHealth <= 0) 
         {
             curHealth = 0;
-            OnDeath();
-            // Debug.Log("You died");
+            isDead = true;
+            GameManager.TriggerPlayerDeath();
+            Debug.Log("You died");
         }
 
         playerHUD.UpdateHealthBar();
@@ -164,11 +170,5 @@ public class Player : MonoBehaviour
             Heal(playerStats.baseRegen);
             yield return new WaitForSeconds(playerStats.baseRegenRate);
         }
-    }
-
-    // TODO: Return to main menu on death and display some death screen
-    void OnDeath()
-    {
-
     }
 }
