@@ -266,6 +266,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1280149206}
     m_Modifications:
     - target: {fileID: 2399487344473703087, guid: b20f9a326d27149b8b43fd4574d37df8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 155793789}
+    - target: {fileID: 2399487344473703087, guid: b20f9a326d27149b8b43fd4574d37df8, type: 3}
       propertyPath: dashImg
       value: 
       objectReference: {fileID: 1123969748}
@@ -2019,7 +2023,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashKey: 32
   dashCooldown: 2
+  isDashOnCooldown: 0
   parryCooldown: 2
+  isParryOnCooldown: 0
+  canRegen: 1
   playerStats: {fileID: 0}
   playerHUD: {fileID: 0}
 --- !u!212 &642825284

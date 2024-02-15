@@ -86,6 +86,7 @@ public class Sword : Weapon
         else if (collision.gameObject.TryGetComponent(out Player player) && target == Target.Player)
         {
             player.TakeDamage(baseDamage);
+            Debug.Log(collision.gameObject.name + " hit!");
         }
     }
 }

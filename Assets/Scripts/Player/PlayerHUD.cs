@@ -19,6 +19,8 @@ public class PlayerHUD : MonoBehaviour
     public Image dashImg;
     public Image parryImg;
 
+    public Player player;
+
     void Start()
     {
         //cachedWidth = healthRect.rect.width;
@@ -43,7 +45,7 @@ public class PlayerHUD : MonoBehaviour
 
     public void UpdateCooldowns()
     {
-        if(Player.isDashOnCooldown)
+        if(player.isDashOnCooldown)
         {
             dashImg.CrossFadeAlpha(0, 0.1f, false);
         }
@@ -52,7 +54,7 @@ public class PlayerHUD : MonoBehaviour
             dashImg.CrossFadeAlpha(1, 0.1f, false);
         }
 
-        if(Player.isParryOnCooldown)
+        if(player.isParryOnCooldown)
         {
             parryImg.CrossFadeAlpha(0, 0.1f, false);
         }

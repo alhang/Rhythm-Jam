@@ -17,16 +17,16 @@ public class Player : MonoBehaviour
 
     public KeyCode dashKey = KeyCode.Space;
     public float dashCooldown = 5;
-    public static bool isDashOnCooldown;
+    public bool isDashOnCooldown;
 
     public float parryCooldown = 5;
-    public static bool isParryOnCooldown;
+    public bool isParryOnCooldown;
 
     private ParryZone parryZone;
-    public static bool isDead = false;
+    public bool isDead = false;
     public bool canRegen = true;
 
-    private IEnumerator regenHealth;
+    private Coroutine regenHealth;
 
     [SerializeField] PlayerStatsSO playerStats;
 
@@ -42,8 +42,7 @@ public class Player : MonoBehaviour
         curHealth = maxHealth;
         playerHUD.UpdateHealthBar();
 
-        regenHealth = RegenHealth();
-        StartCoroutine(regenHealth);
+        regenHealth = StartCoroutine(RegenHealth());
     }
 
     // Update is called once per frame
@@ -192,6 +191,6 @@ public class Player : MonoBehaviour
     void RestartRegen()
     {
         StopCoroutine(regenHealth);
-        StartCoroutine(regenHealth);
+        regenHealth = StartCoroutine(RegenHealth());
     }
 }
