@@ -15,17 +15,10 @@ public abstract class Weapon : MonoBehaviour
 
     public static bool canFire = false;
 
+    private bool canSetDamage = true;
     private void Start()
     {
         beatListener = GetComponent<BeatListener>();
-
-        if(transform.parent){
-            transform.parent.TryGetComponent(out Enemy enemy);
-            if(enemy)
-            {
-                baseDamage += enemy.baseDamage;
-            }
-        }
     }
 
     public void ChangeRateOfFire(int rateOfFire)
@@ -44,6 +37,15 @@ public abstract class Weapon : MonoBehaviour
         else
         {
             direction = Vector3.Normalize(Player.position - (Vector2)transform.position);
+        }
+
+        if(canSetDamage && transform.parent){
+            transform.parent.TryGetComponent(out Enemy enemy);
+            canSetDamage = false;
+            if(enemy)
+            {
+                baseDamage = enemy.baseDamage;
+            }
         }
 
         AttackHandler();
