@@ -26,6 +26,10 @@ public class GameManager : Singleton<GameManager>
 
     public static event Action OnPlayerEnter;
 
+    // Player Death events
+    public delegate void PlayerDeathEventHandler();
+    public static event PlayerDeathEventHandler OnPlayerDeath;
+
     private void Start()
     {
         SpawnPlayerIn();
@@ -39,6 +43,15 @@ public class GameManager : Singleton<GameManager>
     public void OnDisable()
     {
         Enemy.OnEnemyKill -= EnemyKilled;
+    }
+
+    // Static method to trigger the player death event
+    public static void TriggerPlayerDeath()
+    {
+        if (OnPlayerDeath != null)
+        {
+            OnPlayerDeath();
+        }
     }
 
     public void EnemyKilled(Enemy enemy)
