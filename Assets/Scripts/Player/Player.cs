@@ -32,9 +32,16 @@ public class Player : MonoBehaviour
 
     [SerializeField] PlayerHUD playerHUD;
 
+    private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (!spriteRenderer)
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         rb = GetComponent<Rigidbody2D>();
         beatListener = GetComponent<BeatListener>();
         parryZone = GetComponentInChildren<ParryZone>();
@@ -97,7 +104,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        if(isDead)
+        if(isDead || isInvulnerable)
             return;
 
         curHealth -= damageAmount;
@@ -115,6 +122,27 @@ public class Player : MonoBehaviour
         }
 
         playerHUD.UpdateHealthBar();
+
+        StartCoroutine(ActivateInvulerability());
+    }
+
+    private bool isInvulnerable;
+    private float invulnerableTime = 1;
+
+    IEnumerator ActivateInvulerability()
+    {
+        isInvulnerable = true;
+        float timeElapsed = 0;
+        while(timeElapsed < invulnerableTime)
+        {
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(0.1f);
+            timeElapsed += 0.2f;
+            yield return null;
+        }
+        isInvulnerable = false;
     }
 
     public void Heal(float healAmount)

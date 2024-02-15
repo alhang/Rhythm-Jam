@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1280149206}
     m_Modifications:
+    - target: {fileID: 2399487344473703087, guid: b20f9a326d27149b8b43fd4574d37df8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 3780040806419140314}
     - target: {fileID: 3980032025389448785, guid: b20f9a326d27149b8b43fd4574d37df8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -79.25464
@@ -41671,7 +41675,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashKey: 32
   dashCooldown: 2
+  isDashOnCooldown: 0
   parryCooldown: 2
+  isParryOnCooldown: 0
+  isDead: 0
+  canRegen: 1
   playerStats: {fileID: 11400000, guid: d78ce119d3c48484ea78bc7b03d9858f, type: 2}
   playerHUD: {fileID: 1514152358}
 --- !u!58 &3791344367902298102
