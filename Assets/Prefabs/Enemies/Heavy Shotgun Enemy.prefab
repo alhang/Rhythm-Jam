@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 1592532982337703099}
   - component: {fileID: 6093961786071921321}
   - component: {fileID: 3375259325676277562}
+  - component: {fileID: 5326058888970766319}
+  - component: {fileID: 1748702213076408309}
   m_Layer: 0
   m_Name: Heavy Shotgun Enemy
   m_TagString: Untagged
@@ -32,8 +34,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.03, y: 2.85, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2800600845612522210}
   - {fileID: 6467920543750911581}
@@ -80,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19274c0bdd93346889b9779df57689fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -226,6 +228,44 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &5326058888970766319
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5584823426297298966}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b4c3a5025b324527b208007e955eb2f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1748702213076408309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5584823426297298966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f232cb7bc83450b8a14bc4d729c54f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatCount: 0
+  minRotation: {x: 0, y: 0, z: 5}
+  maxRotation: {x: 0, y: 0, z: -5}
+  currentAngle: {x: 0, y: 0, z: 0}
+  targetAngle: {x: 0, y: 0, z: 0}
 --- !u!1001 &2738990965193091886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -241,6 +281,10 @@ PrefabInstance:
     - target: {fileID: 4455815807726491255, guid: 5bac258bc341244519e70552517386d3, type: 3}
       propertyPath: spread
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452005799028798776, guid: 5bac258bc341244519e70552517386d3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8176774458260639742, guid: 5bac258bc341244519e70552517386d3, type: 3}
       propertyPath: m_Name

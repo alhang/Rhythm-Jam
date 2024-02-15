@@ -16,6 +16,7 @@ public class SongManager : Singleton<SongManager>
     public static float deltaTime;
     public static float timeSinceLastQuarterBeat;
     public static float quarterBeatInterval;
+    public static float beatInterval;
 
     public static event Action OnBeat;
 
@@ -47,6 +48,7 @@ public class SongManager : Singleton<SongManager>
         audioSource.Play();
 
         quarterBeatInterval = 60 / (bpm * 4);
+        beatInterval = quarterBeatInterval * 4;
         timeSinceLastQuarterBeat = 0;
 
         while (true)

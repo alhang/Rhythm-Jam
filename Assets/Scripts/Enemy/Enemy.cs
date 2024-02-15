@@ -49,6 +49,15 @@ public class Enemy : MonoBehaviour
     {
         if(!isStunned && isAggro)
             Move();
+
+        if (Player.position.x < transform.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 
     public void TakeDamage(float damageAmount)

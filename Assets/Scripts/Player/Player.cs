@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(Dash());
         
-        if ( !(beatListener.beatCount == 0 || beatListener.beatCount == 3))
+        if ( !(beatListener.beatCount == 0 || beatListener.beatCount == 1))
         {
             Debug.Log(beatListener.beatCount);
             //Debug.Log("Dash is on cooldown");
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
     public void TryParry()
     {
         StartCoroutine(parryZone.ParrySweep());
-        if (ParryZone.failedParry || !(beatListener.beatCount == 0 || beatListener.beatCount == 3))
+        if (ParryZone.failedParry || !(beatListener.beatCount == 0 || beatListener.beatCount == 1))
         {
             //Debug.Log("Parry is on cooldown");
             isParryOnCooldown = true;
