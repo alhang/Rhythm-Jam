@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    public int baseDamage;
+    public float baseDamage;
     public int rateOfFire;
     public int projectileSpeed;
     public Target target;
@@ -18,6 +18,14 @@ public abstract class Weapon : MonoBehaviour
     private void Start()
     {
         beatListener = GetComponent<BeatListener>();
+
+        if(transform.parent){
+            transform.parent.TryGetComponent(out Enemy enemy);
+            if(enemy)
+            {
+                baseDamage += enemy.baseDamage;
+            }
+        }
     }
 
     public void ChangeRateOfFire(int rateOfFire)

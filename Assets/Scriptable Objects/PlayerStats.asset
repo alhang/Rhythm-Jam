@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   baseSpeed: 2
-  dashSpeed: 6
-  baseDamage: 3.5
-  baseRegen: 2
-  baseRegenRate: 1
+  dashSpeed: 4
+  baseDamage: 1
+  baseRegen: 1
+  baseRegenRate: 4
