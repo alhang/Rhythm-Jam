@@ -82,7 +82,6 @@ public class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
-        Debug.Log("Old die");
         OnEnemyKill?.Invoke(this);
         allEnemies.Remove(this);
         Destroy(gameObject);

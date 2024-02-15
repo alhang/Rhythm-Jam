@@ -2310,63 +2310,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6248797771786085004, guid: 8f8f4ac84481045319512d146d5e89c6, type: 3}
   m_PrefabInstance: {fileID: 9044158115276879313}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &816415834
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 467048886044264232, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 467048886044264232, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.5850627
-      objectReference: {fileID: 0}
-    - target: {fileID: 467048886044264232, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 467048886044264232, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9982087
-      objectReference: {fileID: 0}
-    - target: {fileID: 467048886044264232, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 467048886044264232, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 467048886044264232, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.059829008
-      objectReference: {fileID: 0}
-    - target: {fileID: 467048886044264232, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 467048886044264232, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 467048886044264232, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -6.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 5584823426297298966, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
-      propertyPath: m_Name
-      value: Heavy Shotgun Enemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c685bafe706684287b7ce36b5ff1d9af, type: 3}
 --- !u!1 &850171626
 GameObject:
   m_ObjectHideFlags: 0
@@ -42066,4 +42009,3 @@ SceneRoots:
   - {fileID: 1689175047}
   - {fileID: 642825285}
   - {fileID: 362969905}
-  - {fileID: 816415834}

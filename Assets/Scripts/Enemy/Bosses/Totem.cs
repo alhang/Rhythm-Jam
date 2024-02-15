@@ -40,7 +40,6 @@ public class Totem : Enemy
 
     public override void Die()
     {
-        Debug.Log("New die");
         FirstBoss.avaliableSpawnPositions.Add(parent);
         Instantiate(healthPot, transform.position, Quaternion.identity);
         base.Die();

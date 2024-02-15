@@ -25,7 +25,6 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void OnTakeDamage()
     {
-        Debug.Log($"{enemy.name} took damage!");
         healthBarFill.fillAmount = (float)(enemy.curHealth / enemy.maxHealth);
     }
 }

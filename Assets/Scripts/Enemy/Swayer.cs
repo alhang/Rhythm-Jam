@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using UnityEngine.Animations;
 
 public class Swayer : MonoBehaviour
 {
@@ -49,7 +50,6 @@ public class Swayer : MonoBehaviour
 
     public void Sway()
     {
-        Debug.Log("Swaying");
         Vector3 temp = currentAngle;
         currentAngle = targetAngle;
         targetAngle = temp;
@@ -65,6 +65,7 @@ public class Swayer : MonoBehaviour
 
     IEnumerator SwayCoroutine()
     {
+        AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, 1, 1);
         float percentDone = 0;
         float timeElapsed = 0;
         while (timeElapsed < beatLength)
@@ -72,7 +73,7 @@ public class Swayer : MonoBehaviour
             timeElapsed += Time.deltaTime;
             percentDone = timeElapsed / beatLength;
 
-            transform.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(currentAngle.z, targetAngle.z, percentDone));
+            transform.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(currentAngle.z, targetAngle.z, curve.Evaluate(percentDone)));
             yield return null;
         }
     }
