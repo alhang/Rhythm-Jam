@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
 
     private ParryZone parryZone;
     public static bool isDead = false;
+    public bool canRegen = true;
+
+    private IEnumerator regenHealth;
+
     [SerializeField] PlayerStatsSO playerStats;
 
     [SerializeField] PlayerHUD playerHUD;
@@ -38,7 +42,8 @@ public class Player : MonoBehaviour
         curHealth = maxHealth;
         playerHUD.UpdateHealthBar();
 
-        StartCoroutine(RegenHealth());
+        regenHealth = RegenHealth();
+        StartCoroutine(regenHealth);
     }
 
     // Update is called once per frame
@@ -97,6 +102,10 @@ public class Player : MonoBehaviour
             return;
 
         curHealth -= damageAmount;
+
+        // Restart Regen when damage taken
+        RestartRegen();
+
         // TODO: On Death action
         if (curHealth <= 0) 
         {
@@ -172,8 +181,17 @@ public class Player : MonoBehaviour
     {
         while(true)
         {
-            Heal(playerStats.baseRegen);
             yield return new WaitForSeconds(playerStats.baseRegenRate);
+            if(canRegen){
+                Heal(playerStats.baseRegen);
+                Debug.Log("Regen");
+            }
         }
+    }
+
+    void RestartRegen()
+    {
+        StopCoroutine(regenHealth);
+        StartCoroutine(regenHealth);
     }
 }
