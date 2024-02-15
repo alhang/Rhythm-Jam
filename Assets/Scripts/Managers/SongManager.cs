@@ -30,6 +30,9 @@ public class SongManager : Singleton<SongManager>
         audioSource.Stop();
         audioSource.clip = song;
 
+        // Loop if the player is not in a bossroom
+        audioSource.loop = !GameManager.inBossRoom;
+
         if (startingTime == 0)
             time = 0;
         else
@@ -37,8 +40,6 @@ public class SongManager : Singleton<SongManager>
             audioSource.timeSamples = (int) startingTime * audioSource.clip.frequency;
             time = startingTime;
         }
-        
-        
         
         StartCoroutine(CalculateDeltaTime());
     }
@@ -84,6 +85,7 @@ public class SongManager : Singleton<SongManager>
     {
         if (audioSource.isPlaying)
         {
+            Debug.Log("Stop Song " + time);
             audioSource.Stop();
             StopAllCoroutines();
         }

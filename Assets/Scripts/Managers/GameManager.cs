@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager>
 
     public string bossSceneName;
     public int difficultyToReachBoss = 20;
+    public static bool inBossRoom = false;
 
     AsyncSceneLoader asyncSceneLoader;
 
@@ -85,6 +86,7 @@ public class GameManager : Singleton<GameManager>
         if (difficulty >= difficultyToReachBoss)
         {
             Debug.Log("Loading boss");
+            inBossRoom = true;
             asyncSceneLoader = new AsyncSceneLoader(bossSceneName);
             StartCoroutine(asyncSceneLoader.Load());
         }
