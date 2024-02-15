@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
         if (curHealth <= 0) 
         {
             curHealth = 0;
+            OnDealth();
             // Debug.Log("You died");
         }
 
@@ -163,5 +164,11 @@ public class Player : MonoBehaviour
             Heal(playerStats.baseRegen);
             yield return new WaitForSeconds(playerStats.baseRegenRate);
         }
+    }
+
+    // TODO: Return to main menu on death and display some death screen
+    void OnDealth()
+    {
+
     }
 }

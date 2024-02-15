@@ -26,6 +26,6 @@ public class PlayerStatsSO : ScriptableObject
         dashSpeed = 4;
         baseDamage = 1;
         baseRegen = 1;
-        baseRegenRate = 1;
+        baseRegenRate = 4;
     }
 }

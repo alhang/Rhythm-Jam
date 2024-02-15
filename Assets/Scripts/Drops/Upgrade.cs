@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Upgrade : Drop
 {
-    public float addBaseSpeed = 2;
+    public float addBaseSpeed = 1;
     public float addDashSpeed = 3;
     public float addBaseDamage = 1;
-    public float addMaxHealth = 10;
-    public float addBaseRegen = 1;
+    public float addMaxHealth = 5;
+    public float addBaseRegen = -0.5f;
     [SerializeField] PlayerStatsSO playerStats;
 
     public enum UpgradeType
@@ -24,7 +24,7 @@ public class Upgrade : Drop
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
