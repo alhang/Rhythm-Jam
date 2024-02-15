@@ -193,8 +193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 2
-  baseDamage: 1
-  maxHealth: 5
+  baseDamage: 3
+  maxHealth: 10
   baseRegen: 1
   stunDuration: 2
   enemyMovement: {fileID: 11400000, guid: 2991544ccfd3a4c3b8a55c3cd2ad459c, type: 2}
