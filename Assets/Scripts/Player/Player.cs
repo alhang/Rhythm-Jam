@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
         if (curHealth <= 0) 
         {
             curHealth = 0;
-            OnDealth();
+            OnDeath();
             // Debug.Log("You died");
         }
 
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
     }
 
     // TODO: Return to main menu on death and display some death screen
-    void OnDealth()
+    void OnDeath()
     {
 
     }
