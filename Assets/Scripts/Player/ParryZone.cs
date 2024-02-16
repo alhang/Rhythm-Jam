@@ -91,7 +91,7 @@ public class ParryZone : MonoBehaviour
                     if (projectile != null)
                     {
                         projectile.Fire(-projectile.velocity, Target.Enemy, 2 * projectile.damage);
-                        projectile.GetComponent<SpriteRenderer>().color = Color.white;
+                        projectile.GetComponent<SpriteRenderer>().sprite = projectile.playerProj;
                     }
                 }
                 enemyProjectiles.Clear();

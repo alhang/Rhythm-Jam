@@ -9,6 +9,8 @@ public class Projectile : MonoBehaviour
     private float projectileSpeed;
     public Target target { get; private set; }
     public bool isParryable = true;
+    // For parrying
+    public Sprite playerProj;
 
     public void Fire(Vector2 angle, Vector2 startingPos, Target target, float projectileSpeed, float damage)
     {
