@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (!isParryOnCooldown && Input.GetMouseButtonDown(0))
-            TryParry();
+            StartCoroutine(TryParry());
 
         if (!isDashOnCooldown && Input.GetKeyDown(dashKey))
             TryDash();
@@ -193,10 +193,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TryParry()
+    public IEnumerator TryParry()
     {
-        StartCoroutine(parryZone.ParrySweep());
-        if (ParryZone.failedParry || !IsOnBeat())
+        bool onBeatAtStart = IsOnBeat();
+        parryZone.failedParry = true;
+        yield return StartCoroutine(parryZone.ParrySweep());
+        
+        Debug.Log("Failed Parry " + parryZone.failedParry);
+        if (parryZone.failedParry || !onBeatAtStart)
         {
             //Debug.Log("Parry is on cooldown");
             isParryOnCooldown = true;

@@ -13,11 +13,12 @@ public class ParryZone : MonoBehaviour
     private float parryTime;
 
     // Referenced in Player.TryParry()
-    public static bool failedParry = false;
+    public bool failedParry;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -79,7 +80,7 @@ public class ParryZone : MonoBehaviour
         float initialRotation = rb.rotation;
         float targetRotation = initialRotation - rotationAmount;
 
-        failedParry = true;
+        GetComponentInChildren<SpriteRenderer>().enabled = true;
 
         while (timeElapsed < parryTime)
         {
@@ -99,7 +100,7 @@ public class ParryZone : MonoBehaviour
             }
 
             if (enemySword != null){
-                Debug.Log("Parried");
+                
                 Enemy enemy = enemySword.GetComponentInParent<Enemy>();
                 StartCoroutine(enemy.Stun());
 
@@ -111,11 +112,13 @@ public class ParryZone : MonoBehaviour
             timeElapsed += Time.deltaTime;
             float newRotation = Mathf.Lerp(initialRotation, targetRotation, timeElapsed / parryTime);
             rb.MoveRotation(newRotation);
+            // Debug.Log("Parried " + failedParry);
             yield return null;
         }
 
         // Ensure the rotation is exactly as intended at the end
         rb.MoveRotation(targetRotation);
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
 }
 
