@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             horizontal -= 1;
+            spriteRenderer.flipX = true;
         }
         if (Input.GetKey(KeyCode.S))
         {
@@ -97,6 +98,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             horizontal += 1;
+            spriteRenderer.flipX = false;
         }
 
         rb.velocity = new Vector2(horizontal * playerStats.baseSpeed, vertical * playerStats.baseSpeed);
