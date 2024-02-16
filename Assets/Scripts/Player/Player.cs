@@ -136,10 +136,10 @@ public class Player : MonoBehaviour
         while(timeElapsed < invulnerableTime)
         {
             spriteRenderer.enabled = false;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.15f);
             spriteRenderer.enabled = true;
             yield return new WaitForSeconds(0.1f);
-            timeElapsed += 0.2f;
+            timeElapsed += 0.25f;
             yield return null;
         }
         isInvulnerable = false;

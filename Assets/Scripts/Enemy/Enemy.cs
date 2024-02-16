@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     protected static HashSet<Enemy> allEnemies = new();
     public static bool roomIsClear => allEnemies.Count == 0;
 
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     private Color startingColor;
 
     public static bool isAggro;
@@ -50,6 +50,11 @@ public class Enemy : MonoBehaviour
         if(!isStunned && isAggro)
             Move();
 
+        FlipSprite();
+    }
+
+    public virtual void FlipSprite()
+    {
         if (Player.position.x < transform.position.x)
         {
             spriteRenderer.flipX = true;

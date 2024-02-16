@@ -89,6 +89,18 @@ public class FirstBoss : Enemy
         avaliableSpawnPositions.RemoveAt(randomIndex);
     }
 
+    public override void FlipSprite()
+    {
+        if (Player.position.x < transform.position.x)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
+    }
+
     private IEnumerator Battle()
     {
         SongManager.Instance.Play();
