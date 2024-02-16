@@ -450,6 +450,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5927989155239061346}
     m_Modifications:
+    - target: {fileID: 664009789048821290, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.74004126
+      objectReference: {fileID: 0}
+    - target: {fileID: 664009789048821290, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3203
+      objectReference: {fileID: 0}
+    - target: {fileID: 664009789048821290, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 664009789048821290, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.959
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101743798519549703, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6af7296a1597e4db8937ac241b02b5d7, type: 3}
+    - target: {fileID: 3101743798519549703, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101743798519549703, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4397813987182726297, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
       propertyPath: beatInterval
       value: 8
@@ -461,6 +489,14 @@ PrefabInstance:
     - target: {fileID: 6244359222438101410, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619073294596410142, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.32274926
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619073294596410142, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.03521681
       objectReference: {fileID: 0}
     - target: {fileID: 7777133252650657018, guid: 53308ccdbdcae4f0690777e4a4308b9b, type: 3}
       propertyPath: m_LocalPosition.x
