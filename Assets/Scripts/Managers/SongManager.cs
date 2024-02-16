@@ -30,9 +30,6 @@ public class SongManager : Singleton<SongManager>
         audioSource.Stop();
         audioSource.clip = song;
 
-        // Loop if the player is not in a bossroom
-        audioSource.loop = !GameManager.inBossRoom;
-
         if (startingTime == 0)
             time = 0;
         else

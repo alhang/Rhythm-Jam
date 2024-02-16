@@ -70,6 +70,8 @@ public class GameManager : Singleton<GameManager>
 	{
         if (hasPlayerEntered)
             return;
+
+        SongManager.Instance.Play();
         player.canRegen = true;
         hasPlayerEntered = true;
         closedGameArea.SetActive(true);
@@ -82,6 +84,8 @@ public class GameManager : Singleton<GameManager>
         arrows.SetActive(true);
         closedGameArea.SetActive(false);
         player.canRegen = false;
+
+        SongManager.Instance.Stop();
 
         if (difficulty >= difficultyToReachBoss)
         {
