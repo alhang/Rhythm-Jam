@@ -71,6 +71,7 @@ public class GameManager : Singleton<GameManager>
         if (hasPlayerEntered)
             return;
 
+
         SongManager.Instance.Play();
         player.canRegen = true;
         hasPlayerEntered = true;

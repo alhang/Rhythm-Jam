@@ -20,9 +20,17 @@ public class SongManager : Singleton<SongManager>
 
     public static event Action OnBeat;
 
+    public bool isBoss;
+
     public void ChangeSong(AudioClip song)
     {
         this.song = song;
+    }
+
+    private void Start()
+    {
+        if(!isBoss)
+            Play();
     }
 
     public void Play()

@@ -386,7 +386,8 @@ MonoBehaviour:
   sampledTimeDisplay: {fileID: 816809375}
   song: {fileID: 8300000, guid: fc126fc5ce5d441498ee59627e3aaf70, type: 3}
   bpm: 95
-  startingTime: 0
+  startingTime: 200
+  isBoss: 1
 --- !u!4 &167764985
 Transform:
   m_ObjectHideFlags: 0
