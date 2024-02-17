@@ -29,8 +29,7 @@ public class SongManager : Singleton<SongManager>
 
     private void Start()
     {
-        if(!isBoss)
-            Play();
+
     }
 
     public void Play()
