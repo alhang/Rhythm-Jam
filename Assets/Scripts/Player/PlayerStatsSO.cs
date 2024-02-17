@@ -27,5 +27,6 @@ public class PlayerStatsSO : ScriptableObject
         baseDamage = 1;
         baseRegen = 1;
         baseRegenRate = 4;
+        Player.maxHealth = 10;
     }
 }
