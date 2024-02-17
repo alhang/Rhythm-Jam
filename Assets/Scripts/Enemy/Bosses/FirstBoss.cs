@@ -261,7 +261,7 @@ public class FirstBoss : Enemy
 
     void EndBattle()
     {
-        GameManager.Instance.OnRoomClear();
+        GameManager.TriggerPlayerVictory();
     }
 }
 
