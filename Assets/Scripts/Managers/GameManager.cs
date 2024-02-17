@@ -31,6 +31,10 @@ public class GameManager : Singleton<GameManager>
     public delegate void PlayerDeathEventHandler();
     public static event PlayerDeathEventHandler OnPlayerDeath;
 
+    // Player Victory events
+    public delegate void PlayerVictoryEventHandler();
+    public static event PlayerVictoryEventHandler OnPlayerVictory;
+
     private void Start()
     {
         SpawnPlayerIn();
@@ -52,6 +56,14 @@ public class GameManager : Singleton<GameManager>
         if (OnPlayerDeath != null)
         {
             OnPlayerDeath();
+        }
+    }
+
+    public static void TriggerPlayerVictory()
+    {
+        if (OnPlayerVictory != null)
+        {
+            OnPlayerVictory();
         }
     }
 
